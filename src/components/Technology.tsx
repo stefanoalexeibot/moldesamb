@@ -5,10 +5,30 @@ import { Check, Cpu, Activity, Clock } from "lucide-react";
 
 export default function Technology() {
   const machines = [
-    { title: "HAAS VF-4SS", value: "Centro Maquinado", icon: <Activity className="w-5 h-5" />, spec: "X: 1270 mm" },
-    { title: "HAAS VF-2SS", value: "Centro Maquinado", icon: <Cpu className="w-5 h-5" />, spec: "X: 762 mm" },
-    { title: "HAAS ST-28", value: "Torno CNC", icon: <Check className="w-5 h-5" />, spec: "Z: 572 mm" },
-    { title: "HAAS ST-15", value: "Torno CNC", icon: <Clock className="w-5 h-5" />, spec: "Z: 406 mm" },
+    { 
+      title: "HAAS VF-4SS", 
+      value: "Centro de Maquinado", 
+      icon: <Activity className="w-5 h-5" />, 
+      specs: ["Viajes: 1270x508x635 mm", "Husillo: 12,000 RPM", "Motor: 30.0 hp Direct-Drive"] 
+    },
+    { 
+      title: "HAAS VF-2SS", 
+      value: "Centro de Maquinado", 
+      icon: <Cpu className="w-5 h-5" />, 
+      specs: ["Viajes: 762x406x508 mm", "Husillo: 12,000 RPM", "Rapidez: 35.6 m/min"] 
+    },
+    { 
+      title: "HAAS ST-28", 
+      value: "Torno CNC", 
+      icon: <Check className="w-5 h-5" />, 
+      specs: ["Mandril: 12 pulg", "Barra: 4.0 pulg", "Motor: 40 hp / 3,200 RPM"] 
+    },
+    { 
+      title: "HAAS ST-15", 
+      value: "Torno CNC", 
+      icon: <Clock className="w-5 h-5" />, 
+      specs: ["Mandril: 8.3 pulg", "Barra: 2.5 pulg", "Motor: 20 hp / 4,000 RPM"] 
+    },
   ];
 
   return (
@@ -26,19 +46,27 @@ export default function Technology() {
               MAQUINARIA <span className="text-white/20 font-light not-italic">HAAS CNC</span>
             </h2>
             <p className="text-gray-400 text-lg mb-10 leading-relaxed font-medium">
-              Contamos con un parque de maquinaria compuesto por centros de maquinado vertical y de torneado Haas de última generación. 
+              Contamos con un parque de maquinaria compuesto por centros de maquinado vertical y tornos Haas de última generación. 
               Nuestra tecnología nos permite fabricar piezas complejas en una amplia variedad de materiales como acero, aluminio, latón y plásticos de ingeniería con una precisión inigualable.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {machines.map((machine, index) => (
-                <div key={index} className="bg-white/5 border border-white/10 p-6 hover:border-[#ED1C24] transition-colors group">
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="text-[#ED1C24] group-hover:scale-110 transition-transform">{machine.icon}</div>
-                    <span className="text-gray-600 text-[10px] font-mono">{machine.spec}</span>
+                <div key={index} className="bg-white/5 border border-white/10 p-6 hover:border-[#ED1C24] transition-colors group flex flex-col justify-between h-full">
+                  <div>
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="text-[#ED1C24] group-hover:scale-110 transition-transform">{machine.icon}</div>
+                    </div>
+                    <div className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">{machine.value}</div>
+                    <div className="text-xl font-bold mb-4">{machine.title}</div>
                   </div>
-                  <div className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">{machine.value}</div>
-                  <div className="text-xl font-bold">{machine.title}</div>
+                  <div className="space-y-1 border-t border-white/10 pt-4 mt-auto">
+                    {machine.specs.map((spec, sIdx) => (
+                      <div key={sIdx} className="text-gray-400 text-[10px] font-mono tracking-wider">
+                        // {spec}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
