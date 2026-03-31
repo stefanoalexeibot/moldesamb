@@ -5,13 +5,13 @@ import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function Contact() {
   return (
-    <section id="contacto" className="py-32 bg-white relative">
+    <section id="contacto" className="py-20 md:py-32 bg-white relative">
       <div className="container mx-auto px-6">
         <div className="bg-[#1A1A1A] p-8 md:p-20 relative overflow-hidden">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#ED1C24]/10 -rotate-45 translate-x-32 -translate-y-32" />
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}

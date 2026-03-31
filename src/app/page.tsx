@@ -9,7 +9,7 @@ export default function Home() {
       <Hero />
       
       {/* Clients Section (Social Proof) */}
-      <section id="clientes" className="py-24 bg-[#F5F5F5] border-y border-gray-200">
+      <section id="clientes" className="py-16 md:py-24 bg-[#F5F5F5] border-y border-gray-200">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left">
             <div className="max-w-xs">
@@ -27,7 +27,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="servicios" className="py-32 bg-white relative">
+      <section id="servicios" className="py-20 md:py-32 bg-white relative">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
             <div className="group space-y-8 p-8 hover:bg-[#F5F5F5] transition-colors duration-500">

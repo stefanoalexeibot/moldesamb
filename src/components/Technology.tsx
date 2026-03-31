@@ -9,32 +9,36 @@ export default function Technology() {
       title: "HAAS VF-4SS", 
       value: "Centro de Maquinado", 
       icon: <Activity className="w-5 h-5" />, 
+      image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=600&auto=format&fit=crop",
       specs: ["Viajes: 1270x508x635 mm", "Husillo: 12,000 RPM", "Motor: 30.0 hp Direct-Drive"] 
     },
     { 
       title: "HAAS VF-2SS", 
       value: "Centro de Maquinado", 
       icon: <Cpu className="w-5 h-5" />, 
+      image: "https://images.unsplash.com/photo-1565439387879-1bea9960ffce?q=80&w=600&auto=format&fit=crop",
       specs: ["Viajes: 762x406x508 mm", "Husillo: 12,000 RPM", "Rapidez: 35.6 m/min"] 
     },
     { 
       title: "HAAS ST-28", 
       value: "Torno CNC", 
       icon: <Check className="w-5 h-5" />, 
+      image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=600&auto=format&fit=crop",
       specs: ["Mandril: 12 pulg", "Barra: 4.0 pulg", "Motor: 40 hp / 3,200 RPM"] 
     },
     { 
       title: "HAAS ST-15", 
       value: "Torno CNC", 
       icon: <Clock className="w-5 h-5" />, 
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop",
       specs: ["Mandril: 8.3 pulg", "Barra: 2.5 pulg", "Motor: 20 hp / 4,000 RPM"] 
     },
   ];
 
   return (
-    <section id="tecnologia" className="py-32 bg-[#1A1A1A] text-white overflow-hidden relative">
+    <section id="tecnologia" className="py-20 md:py-32 bg-[#1A1A1A] text-white overflow-hidden relative">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -52,20 +56,24 @@ export default function Technology() {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {machines.map((machine, index) => (
-                <div key={index} className="bg-white/5 border border-white/10 p-6 hover:border-[#ED1C24] transition-colors group flex flex-col justify-between h-full">
-                  <div>
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="text-[#ED1C24] group-hover:scale-110 transition-transform">{machine.icon}</div>
+                <div key={index} className="bg-white/5 border border-white/10 hover:border-[#ED1C24] transition-colors group flex flex-col justify-between h-full overflow-hidden">
+                  <div className="h-40 w-full overflow-hidden relative border-b border-white/10">
+                    <img src={machine.image} alt={machine.title} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+                    <div className="absolute top-4 left-4 bg-[#1A1A1A]/80 backdrop-blur text-[#ED1C24] p-2">
+                      {machine.icon}
                     </div>
-                    <div className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">{machine.value}</div>
-                    <div className="text-xl font-bold mb-4">{machine.title}</div>
                   </div>
-                  <div className="space-y-1 border-t border-white/10 pt-4 mt-auto">
-                    {machine.specs.map((spec, sIdx) => (
-                      <div key={sIdx} className="text-gray-400 text-[10px] font-mono tracking-wider">
-                        // {spec}
-                      </div>
-                    ))}
+                  <div className="p-6 flex flex-col flex-1">
+                    <div className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">{machine.value}</div>
+                    <div className="text-xl font-bold mb-6">{machine.title}</div>
+                    
+                    <div className="space-y-2 border-t border-white/10 pt-4 mt-auto">
+                      {machine.specs.map((spec, sIdx) => (
+                        <div key={sIdx} className="text-gray-400 text-[10px] font-mono tracking-wider flex items-center gap-2">
+                          <span className="w-1 h-1 bg-[#ED1C24] inline-block" /> {spec}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}

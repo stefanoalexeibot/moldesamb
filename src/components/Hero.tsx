@@ -21,10 +21,10 @@ export default function Hero() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <span className="inline-block bg-[#ED1C24] text-white text-xs font-black px-4 py-2 uppercase tracking-[0.3em] mb-6">
+            <span className="inline-block bg-[#ED1C24] text-white text-[10px] md:text-xs font-black px-3 py-1.5 md:px-4 md:py-2 uppercase tracking-[0.2em] md:tracking-[0.3em] mb-4 md:mb-6">
               Ingeniería de Clase Mundial
             </span>
-            <h1 className="text-6xl md:text-8xl lg:text-[100px] font-black text-white leading-[0.9] tracking-tighter mb-8">
+            <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[100px] font-black text-white leading-[0.9] tracking-tighter mb-6 md:mb-8">
               PRECISIÓN <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ED1C24] to-red-400">
                 INDUSTRIAL
@@ -50,11 +50,11 @@ export default function Hero() {
             viewport={{ once: true }}
             className="flex flex-wrap gap-6"
           >
-            <button className="bg-[#ED1C24] hover:bg-white hover:text-[#1A1A1A] text-white px-10 py-5 text-sm font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-3 group relative overflow-hidden">
+            <button className="bg-[#ED1C24] hover:bg-white hover:text-[#1A1A1A] text-white px-8 py-4 md:px-10 md:py-5 text-xs md:text-sm font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-3 group relative overflow-hidden w-full md:w-auto justify-center">
               <span className="relative z-10">Cotizar Proyecto</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform relative z-10" />
             </button>
-            <button className="border border-white/20 hover:border-white text-white px-10 py-5 text-sm font-black uppercase tracking-widest transition-all duration-300">
+            <button className="border border-white/20 hover:border-white text-white px-8 py-4 md:px-10 md:py-5 text-xs md:text-sm font-black uppercase tracking-widest transition-all duration-300 w-full md:w-auto justify-center">
               Nuestra Tecnología
             </button>
           </motion.div>
@@ -65,20 +65,20 @@ export default function Hero() {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-3 gap-8 mt-24 pt-12 border-t border-white/10"
+            className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 mt-16 md:mt-24 pt-8 md:pt-12 border-t border-white/10"
           >
-            <div className="flex items-center gap-4">
-              <Settings className="text-[#ED1C24] w-8 h-8" />
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+              <Settings className="text-[#ED1C24] w-6 h-6 sm:w-8 sm:h-8" />
               <div>
-                <div className="text-white font-black text-2xl tracking-tighter">4 EJES</div>
-                <div className="text-gray-400 text-xs font-bold uppercase tracking-widest">Maquinado CNC</div>
+                <div className="text-white font-black text-xl sm:text-2xl tracking-tighter">4 EJES</div>
+                <div className="text-gray-400 text-[9px] sm:text-xs font-bold uppercase tracking-widest">Maquinado CNC</div>
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Shield className="text-[#ED1C24] w-8 h-8" />
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+              <Shield className="text-[#ED1C24] w-6 h-6 sm:w-8 sm:h-8" />
               <div>
-                <div className="text-white font-black text-2xl tracking-tighter">ISO 9001</div>
-                <div className="text-gray-400 text-xs font-bold uppercase tracking-widest">Calidad Superior</div>
+                <div className="text-white font-black text-xl sm:text-2xl tracking-tighter">ISO 9001</div>
+                <div className="text-gray-400 text-[9px] sm:text-xs font-bold uppercase tracking-widest">Calidad Superior</div>
               </div>
             </div>
             <div className="hidden md:flex items-center gap-4">
