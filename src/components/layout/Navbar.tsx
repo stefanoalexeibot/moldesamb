@@ -41,12 +41,12 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="bg-haas-red p-1.5 transition-transform group-hover:rotate-12">
+          <div className="bg-[#ED1C24] p-1.5 transition-transform group-hover:rotate-12">
             <Settings className="w-6 h-6 text-white" />
           </div>
           <span className={cn(
             "text-2xl font-black tracking-tighter",
-            isScrolled ? "text-haas-dark" : "text-white"
+            isScrolled ? "text-[#1A1A1A]" : "text-white"
           )}>
             AMB<span className="font-light">PRECISION</span>
           </span>
@@ -59,8 +59,8 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               className={cn(
-                "text-sm font-bold uppercase tracking-widest hover:text-haas-red transition-colors",
-                isScrolled ? "text-haas-dark" : "text-white/80 hover:text-white"
+                "text-sm font-bold uppercase tracking-widest hover:text-[#ED1C24] transition-colors",
+                isScrolled ? "text-[#1A1A1A]" : "text-white/80 hover:text-white"
               )}
             >
               {link.name}
@@ -68,7 +68,7 @@ export default function Navbar() {
           ))}
           <Link
             href="#contacto"
-            className="bg-haas-red text-white text-xs font-black px-6 py-2.5 uppercase tracking-widest hover:bg-haas-dark transition-all"
+            className="bg-[#ED1C24] text-white text-xs font-black px-6 py-2.5 uppercase tracking-widest hover:bg-[#1A1A1A] transition-all"
           >
             Cotizar
           </Link>
@@ -78,7 +78,7 @@ export default function Navbar() {
         <button
           className={cn(
             "md:hidden p-2",
-            isScrolled ? "text-haas-dark" : "text-white"
+            isScrolled ? "text-[#1A1A1A]" : "text-white"
           )}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
@@ -89,7 +89,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "fixed inset-0 bg-haas-dark z-40 transition-transform duration-500 md:hidden flex flex-col items-center justify-center gap-8",
+          "fixed inset-0 bg-[#1A1A1A] z-40 transition-transform duration-500 md:hidden flex flex-col items-center justify-center gap-8",
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
@@ -103,7 +103,7 @@ export default function Navbar() {
           <Link
             key={link.name}
             href={link.href}
-            className="text-white text-2xl font-black uppercase tracking-tighter hover:text-haas-red"
+            className="text-white text-2xl font-black uppercase tracking-tighter hover:text-[#ED1C24]"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             {link.name}

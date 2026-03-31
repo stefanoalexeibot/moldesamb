@@ -1,113 +1,95 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Send, Phone, Mail, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function Contact() {
   return (
     <section id="contacto" className="py-32 bg-white relative">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <span className="text-brand-blue font-black uppercase tracking-[0.3em] text-xs mb-6 block">Hablemos de su proyecto</span>
-            <h2 className="text-5xl md:text-6xl font-black tracking-tighter mb-8 italic">
-              CONTACTO <span className="text-gray-100 font-light not-italic">DIRECTO</span>
-            </h2>
-            <p className="text-gray-500 text-lg mb-12 font-medium">
-              ¿Tiene un requerimiento especial? Nuestro equipo de ingeniería está listo para asesorarlo en la fabricación o mantenimiento de sus moldes.
-            </p>
+        <div className="bg-[#1A1A1A] p-8 md:p-20 relative overflow-hidden">
+          {/* Background decoration */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#ED1C24]/10 -rotate-45 translate-x-32 -translate-y-32" />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 italic">
+                LISTO PARA <br />
+                <span className="text-[#ED1C24] not-italic">COMENZAR?</span>
+              </h2>
+              <p className="text-gray-500 text-lg mb-12 max-w-sm">
+                Inicie su proyecto de manufactura con el respaldo de ingeniería AMB. 
+                Cotizaciones sin compromiso en menos de 24 horas.
+              </p>
+              
+              <div className="space-y-8">
+                <div className="flex items-center gap-6 group">
+                  <div className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#ED1C24] transition-colors">
+                    <Phone className="text-white w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-gray-600 text-[10px] font-bold uppercase tracking-widest">Teléfono</div>
+                    <div className="text-white font-bold">+52 (81) 1234 5678</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-6 group">
+                  <div className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#ED1C24] transition-colors">
+                    <Mail className="text-white w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-gray-600 text-[10px] font-bold uppercase tracking-widest">Email</div>
+                    <div className="text-white font-bold">contacto@moldesamb.com</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-6 group">
+                  <div className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#ED1C24] transition-colors">
+                    <MapPin className="text-white w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-gray-600 text-[10px] font-bold uppercase tracking-widest">Planta</div>
+                    <div className="text-white font-bold text-sm">García, Nuevo León, México</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
 
-            <div className="space-y-8">
-              <div className="flex gap-6 items-start">
-                <div className="w-12 h-12 bg-haas-red/10 flex items-center justify-center text-haas-red shrink-0">
-                  <MapPin size={24} />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="bg-white p-10 shadow-2xl"
+            >
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1A1A1A]/40">Nombre Completo</label>
+                    <input type="text" className="w-full bg-[#F5F5F5] border-none p-4 text-sm focus:ring-2 focus:ring-[#ED1C24] outline-none" required />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1A1A1A]/40">Correo Corporativo</label>
+                    <input type="email" className="w-full bg-[#F5F5F5] border-none p-4 text-sm focus:ring-2 focus:ring-[#ED1C24] outline-none" required />
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-sm font-black uppercase tracking-widest text-haas-dark mb-1">Ubicación</h4>
-                  <p className="text-gray-500 font-medium">Parque Industrial, Monterrey, NL, México</p>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1A1A1A]/40">Empresa / Proyecto</label>
+                  <input type="text" className="w-full bg-[#F5F5F5] border-none p-4 text-sm focus:ring-2 focus:ring-[#ED1C24] outline-none" required />
                 </div>
-              </div>
-              <div className="flex gap-6 items-start">
-                <div className="w-12 h-12 bg-haas-red/10 flex items-center justify-center text-haas-red shrink-0">
-                  <Phone size={24} />
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1A1A1A]/40">Detalles del Requerimiento</label>
+                  <textarea rows={4} className="w-full bg-[#F5F5F5] border-none p-4 text-sm focus:ring-2 focus:ring-[#ED1C24] outline-none resize-none" required />
                 </div>
-                <div>
-                  <h4 className="text-sm font-black uppercase tracking-widest text-haas-dark mb-1">Teléfono</h4>
-                  <p className="text-gray-500 font-medium">+52 (81) 0000 0000</p>
-                </div>
-              </div>
-              <div className="flex gap-6 items-start">
-                <div className="w-12 h-12 bg-haas-red/10 flex items-center justify-center text-haas-red shrink-0">
-                  <Mail size={24} />
-                </div>
-                <div>
-                  <h4 className="text-sm font-black uppercase tracking-widest text-haas-dark mb-1">Email</h4>
-                  <p className="text-gray-500 font-medium">ventas@moldesamb.mx</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-haas-gray p-10 border border-gray-100 relative"
-          >
-            {/* Form */}
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="text-[10px] font-black uppercase tracking-widest text-haas-dark mb-2 block">Nombre completo</label>
-                  <input 
-                    type="text" 
-                    placeholder="Ej. Juan Pérez"
-                    className="w-full bg-white border border-gray-200 px-4 py-4 text-sm focus:outline-none focus:border-haas-red transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="text-[10px] font-black uppercase tracking-widest text-haas-dark mb-2 block">Empresa</label>
-                  <input 
-                    type="text" 
-                    placeholder="Ej. Industrias Pepsi"
-                    className="w-full bg-white border border-gray-200 px-4 py-4 text-sm focus:outline-none focus:border-haas-red transition-colors"
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="text-[10px] font-black uppercase tracking-widest text-haas-dark mb-2 block">Correo electrónico</label>
-                <input 
-                  type="email" 
-                  placeholder="juan@empresa.com"
-                  className="w-full bg-white border border-gray-200 px-4 py-4 text-sm focus:outline-none focus:border-haas-red transition-colors"
-                />
-              </div>
-              <div>
-                <label className="text-[10px] font-black uppercase tracking-widest text-haas-dark mb-2 block">Mensaje / Requerimiento</label>
-                <textarea 
-                  rows={4}
-                  placeholder="Describa brevemente su proyecto..."
-                  className="w-full bg-white border border-gray-200 px-4 py-4 text-sm focus:outline-none focus:border-haas-red transition-colors resize-none"
-                />
-              </div>
-              <button 
-                type="submit"
-                className="w-full bg-haas-dark text-white py-5 font-black uppercase tracking-[0.2em] text-sm hover:bg-haas-red transition-all flex items-center justify-center gap-3 group"
-              >
-                Enviar Mensaje
-                <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </button>
-            </form>
-            
-            {/* Accent decoration */}
-            <div className="absolute -bottom-2 -right-2 w-20 h-20 bg-haas-red/5 -z-10" />
-          </motion.div>
+                <button type="submit" className="w-full bg-[#ED1C24] text-white py-5 text-sm font-black uppercase tracking-widest hover:bg-[#1A1A1A] transition-colors duration-300">
+                  Enviar Solicitud
+                </button>
+              </form>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
