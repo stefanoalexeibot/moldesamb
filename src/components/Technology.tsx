@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { Check, Cpu, Activity, Clock } from "lucide-react";
 
 export default function Technology() {
-  const specs = [
-    { title: "Velocidad de Husillo", value: "15,000 RPM", icon: <Cpu className="w-5 h-5" /> },
-    { title: "Precisión de Posición", value: "±0.005 mm", icon: <Activity className="w-5 h-5" /> },
-    { title: "Capacidad de Carga", value: "1,500 kg", icon: <Check className="w-5 h-5" /> },
-    { title: "Operación 24/7", value: "Alta Disponibilidad", icon: <Clock className="w-5 h-5" /> },
+  const machines = [
+    { title: "HAAS VF-4SS", value: "Centro Maquinado", icon: <Activity className="w-5 h-5" />, spec: "X: 1270 mm" },
+    { title: "HAAS VF-2SS", value: "Centro Maquinado", icon: <Cpu className="w-5 h-5" />, spec: "X: 762 mm" },
+    { title: "HAAS ST-28", value: "Torno CNC", icon: <Check className="w-5 h-5" />, spec: "Z: 572 mm" },
+    { title: "HAAS ST-15", value: "Torno CNC", icon: <Clock className="w-5 h-5" />, spec: "Z: 406 mm" },
   ];
 
   return (
@@ -26,16 +26,19 @@ export default function Technology() {
               MAQUINARIA <span className="text-white/20 font-light not-italic">HAAS CNC</span>
             </h2>
             <p className="text-gray-400 text-lg mb-10 leading-relaxed font-medium">
-              Contamos con un parque de maquinaria compuesto por 4 centros de maquinado vertical Haas de última generación. 
-              Nuestra tecnología de 4 ejes nos permite fabricar geometrías complejas con una precisión inigualable.
+              Contamos con un parque de maquinaria compuesto por centros de maquinado vertical y de torneado Haas de última generación. 
+              Nuestra tecnología nos permite fabricar piezas complejas en una amplia variedad de materiales como acero, aluminio, latón y plásticos de ingeniería con una precisión inigualable.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {specs.map((spec, index) => (
+              {machines.map((machine, index) => (
                 <div key={index} className="bg-white/5 border border-white/10 p-6 hover:border-[#ED1C24] transition-colors group">
-                  <div className="text-[#ED1C24] mb-4 group-hover:scale-110 transition-transform">{spec.icon}</div>
-                  <div className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">{spec.title}</div>
-                  <div className="text-xl font-bold">{spec.value}</div>
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="text-[#ED1C24] group-hover:scale-110 transition-transform">{machine.icon}</div>
+                    <span className="text-gray-600 text-[10px] font-mono">{machine.spec}</span>
+                  </div>
+                  <div className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-1">{machine.value}</div>
+                  <div className="text-xl font-bold">{machine.title}</div>
                 </div>
               ))}
             </div>
@@ -59,9 +62,12 @@ export default function Technology() {
               
               {/* Floating technical labels */}
               <div className="absolute top-10 right-10 bg-white/10 backdrop-blur-md p-4 text-[10px] font-mono tracking-wider opacity-60 group-hover:opacity-100 transition-opacity">
-                X: 1016.00 mm <br />
-                Y: 508.00 mm <br />
-                Z: 635.00 mm
+                HAAS VF-4SS [SUPER-SPEED] <br />
+                <br />
+                SPINDLE: 12,000 RPM <br />
+                POWER: 30.0 hp Direct-Drive <br />
+                RAPIDS: 35.6 m/min (1400 ipm) <br />
+                TRAVEL: 1270 x 508 x 635 mm
               </div>
             </div>
             
