@@ -2,96 +2,90 @@
 
 import { Canvas } from "@react-three/fiber";
 import { Environment, Float, PresentationControls, ContactShadows, Text } from "@react-three/drei";
+import { Geometry, Base, Subtraction } from "@react-three/csg";
 import { useRef } from "react";
 import * as THREE from "three";
 
 function MoldModel() {
   const group = useRef<THREE.Group>(null);
   
-  // Material metálico oscuro para el bloque base
+  // Real aluminum/steel machined look
   const moldMaterial = new THREE.MeshStandardMaterial({
-    color: "#242424",
+    color: "#e0e0e0",
     metalness: 0.9,
-    roughness: 0.2,
+    roughness: 0.15,
   });
 
-  // Material pulido espejo para las cavidades como en la foto
-  const polishedMaterial = new THREE.MeshStandardMaterial({
+  const chromeMaterial = new THREE.MeshStandardMaterial({
     color: "#ffffff",
     metalness: 1,
     roughness: 0.05,
   });
 
-  const chromeMaterial = new THREE.MeshStandardMaterial({
-    color: "#d0d0d0",
-    metalness: 1,
-    roughness: 0.1,
-  });
-  
-  // Función para renderizar el core de la botella corrugada
-  const renderRibbedCavity = (xPos: number) => (
+  const renderRibbedCavitySubtractions = (xPos: number) => (
     <group position={[xPos, 0, 0]}>
-      {/* Punta superior cónica */}
-      <mesh material={polishedMaterial} position={[0, 1.2, 0]}>
-        <cylinderGeometry args={[0.15, 0.55, 0.8, 32]} />
-      </mesh>
+      {/* Top cone */}
+      <Subtraction position={[0, 1.2, 0]}>
+        <cylinderGeometry args={[0.2, 0.6, 0.8, 32]} />
+      </Subtraction>
       
-      {/* Cuerpo corrugado de la botella */}
-      {Array.from({ length: 8 }).map((_, i) => (
-        <group key={i} position={[0, 0.7 - i * 0.18, 0]}>
-          <mesh material={polishedMaterial}>
-            <cylinderGeometry args={[0.55, 0.55, 0.18, 32]} />
-          </mesh>
-          <mesh material={polishedMaterial}>
-             <torusGeometry args={[0.55, 0.04, 16, 32]} />
-          </mesh>
-        </group>
+      {/* Main ribbed body space */}
+      <Subtraction position={[0, 0.25, 0]}>
+        <cylinderGeometry args={[0.6, 0.6, 1.1, 32]} />
+      </Subtraction>
+
+      {/* The Ribs (Torus outer shell will cut deeper into the mold block) */}
+      {Array.from({ length: 6 }).map((_, i) => (
+        <Subtraction key={i} position={[0, 0.7 - i * 0.18, 0]} rotation={[Math.PI/2, 0, 0]}>
+           <torusGeometry args={[0.6, 0.06, 16, 32]} />
+        </Subtraction>
       ))}
       
-      {/* Base inferior cónica */}
-      <mesh material={polishedMaterial} position={[0, -0.65, 0]}>
-        <cylinderGeometry args={[0.55, 0.35, 0.3, 32]} />
-      </mesh>
+      {/* Bottom cone */}
+      <Subtraction position={[0, -0.45, 0]}>
+        <cylinderGeometry args={[0.6, 0.35, 0.3, 32]} />
+      </Subtraction>
       
-      {/* Cuello / Eje en la base */}
-      <mesh material={chromeMaterial} position={[0, -1.0, 0]}>
-        <cylinderGeometry args={[0.25, 0.25, 0.4, 32]} />
-      </mesh>
-      <mesh material={moldMaterial} position={[0, -1.0, 0.25]} rotation={[Math.PI/2, 0, 0]}>
-         <cylinderGeometry args={[0.05, 0.05, 0.5, 16]} />
-      </mesh>
+      {/* Neck */}
+      <Subtraction position={[0, -0.85, 0]}>
+        <cylinderGeometry args={[0.3, 0.3, 0.5, 32]} />
+      </Subtraction>
     </group>
   );
 
   return (
     <group ref={group}>
-      {/* Placa base del molde */}
-      <mesh material={moldMaterial} position={[0, 0, -1]}>
-        <boxGeometry args={[4.2, 4.4, 1.5]} />
+      <mesh material={moldMaterial}>
+        <Geometry>
+          {/* Placa base del molde centrada atrás de z=0 para que el corte a mitad de botella (z=0) exponga la cavidad */}
+          <Base position={[0, 0, -1]}>
+            <boxGeometry args={[4.4, 4.6, 2]} />
+          </Base>
+          
+          {/* Substraemos las cavidades en z=0 para cortarlas a la mitad perfecta */}
+          {renderRibbedCavitySubtractions(-1.1)}
+          {renderRibbedCavitySubtractions(1.1)}
+        </Geometry>
       </mesh>
-      
-      {/* Renderizar doble cavidad estilo botella */}
-      {renderRibbedCavity(-1.0)}
-      {renderRibbedCavity(1.0)}
 
-      {/* Pernos guía (Guide Pins) */}
-      <mesh material={chromeMaterial} position={[-1.7, 1.8, -0.2]}>
-        <cylinderGeometry args={[0.12, 0.12, 1.8, 32]} />
+      {/* Pernos guía (Guide Pins) con material cromado más brillante */}
+      <mesh material={chromeMaterial} position={[-1.8, 1.9, 0.2]}>
+        <cylinderGeometry args={[0.15, 0.15, 0.8, 32]} />
       </mesh>
-      <mesh material={chromeMaterial} position={[1.7, 1.8, -0.2]}>
-        <cylinderGeometry args={[0.12, 0.12, 1.8, 32]} />
+      <mesh material={chromeMaterial} position={[1.8, 1.9, 0.2]}>
+        <cylinderGeometry args={[0.15, 0.15, 0.8, 32]} />
       </mesh>
-      <mesh material={chromeMaterial} position={[-1.7, -1.8, -0.2]}>
-        <cylinderGeometry args={[0.12, 0.12, 1.8, 32]} />
+      <mesh material={chromeMaterial} position={[-1.8, -1.9, 0.2]}>
+        <cylinderGeometry args={[0.15, 0.15, 0.8, 32]} />
       </mesh>
-      <mesh material={chromeMaterial} position={[1.7, -1.8, -0.2]}>
-        <cylinderGeometry args={[0.12, 0.12, 1.8, 32]} />
+      <mesh material={chromeMaterial} position={[1.8, -1.9, 0.2]}>
+        <cylinderGeometry args={[0.15, 0.15, 0.8, 32]} />
       </mesh>
 
       {/* Texto Engrabado 3D */}
       <Text
-        position={[0, -1.7, -0.24]}
-        fontSize={0.22}
+        position={[0, -1.8, 0.01]}
+        fontSize={0.25}
         color="#ED1C24"
         font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZJhjp-Ek-_EeA.woff"
         anchorX="center"
