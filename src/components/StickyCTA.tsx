@@ -1,62 +1,59 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, Phone, Mail } from "lucide-react";
 import { useState, useEffect } from "react";
+import { MessageSquare, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/components/LanguageContext";
 
 export default function StickyCTA() {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > 500) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+    const handleScroll = () => {
+      // Show after 500px of scroll
+      setIsVisible(window.scrollY > 500);
     };
-
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.5, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.5, y: 20 }}
-          className="fixed bottom-8 right-8 z-[100] flex flex-col items-end gap-4"
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          className="fixed bottom-8 right-8 z-[60] flex items-center gap-4"
         >
-          {/* Main Pulse Button */}
-          <button 
-            onClick={() => {
-              const contactSection = document.getElementById('contacto');
-              contactSection?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="group relative flex items-center gap-3 bg-[#ED1C24] text-white px-6 py-4 rounded-full font-black uppercase text-xs tracking-widest shadow-[0_0_30px_rgba(237,28,36,0.5)] hover:shadow-[0_0_50px_rgba(237,28,36,0.8)] transition-all duration-500 overflow-hidden"
+          <a
+            href="#contacto"
+            className="group flex items-center gap-4 bg-white text-black px-8 py-5 rounded-full font-black text-xs uppercase tracking-[0.2em] shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:bg-[#ED1C24] hover:text-white transition-all duration-500 hover:scale-105"
           >
-            {/* Pulse effect */}
-            <span className="absolute inset-0 rounded-full animate-ping bg-[#ED1C24]/40 -z-10" />
-            
-            <MessageSquare className="w-5 h-5 group-hover:scale-110 transition-transform" />
-            <span className="hidden md:inline">Iniciar Proyecto</span>
-            <span className="md:hidden">Cotizar</span>
+            <span>{t("general", "cta_start")}</span>
+            <div className="bg-black/5 group-hover:bg-white/20 p-2 rounded-full transition-colors">
+              <ArrowRight className="w-4 h-4" />
+            </div>
+          </a>
 
-            {/* Glossy overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/30 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </button>
-
-          {/* Secondary social link (WhatsApp style?) */}
-          <a 
-            href="https://wa.me/5218112345678" // Placeholder WhatsApp
+          <motion.a
+            href="https://wa.me/528183903434"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#25D366]/10 backdrop-blur-md border border-[#25D366]/30 p-3 rounded-full text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-300 shadow-xl"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl relative group"
           >
-            <Phone className="w-5 h-5" />
-          </a>
+            {/* Pulse effect */}
+            <div className="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-20" />
+            <MessageSquare className="w-8 h-8 relative z-10" />
+            
+            {/* Tooltip */}
+            <div className="absolute bottom-full right-0 mb-4 px-4 py-2 bg-black text-white text-[10px] font-black uppercase tracking-widest rounded-lg opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all pointer-events-none whitespace-nowrap">
+                WhatsApp Directo
+            </div>
+          </motion.a>
         </motion.div>
       )}
     </AnimatePresence>

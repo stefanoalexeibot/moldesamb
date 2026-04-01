@@ -1,109 +1,100 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search, PenTool, Cpu, ShieldCheck, Truck } from "lucide-react";
-
-const steps = [
-  {
-    title: "Análisis del Proyecto",
-    desc: "Revisión exhaustiva de requerimientos técnicos, materiales y tolerancias específicas.",
-    icon: <Search className="w-6 h-6" />,
-    color: "#ED1C24"
-  },
-  {
-    title: "Diseño y Programación",
-    desc: "Modelado avanzado en software CAD/CAM para optimizar rutas de maquinado y eficiencia.",
-    icon: <PenTool className="w-6 h-6" />,
-    color: "#ED1C24"
-  },
-  {
-    title: "Fabricación y Maquinado",
-    desc: "Producción en centros de maquinado HAAS de 4 ejes con precisión micrométrica.",
-    icon: <Cpu className="w-6 h-6" />,
-    color: "#ED1C24"
-  },
-  {
-    title: "Control de Calidad",
-    desc: "Inspección rigurosa dimensional para asegurar cumplimiento total con el diseño original.",
-    icon: <ShieldCheck className="w-6 h-6" />,
-    color: "#ED1C24"
-  },
-  {
-    title: "Entrega y Seguimiento",
-    desc: "Envío puntual con logística especializada y soporte técnico post-entrega.",
-    icon: <Truck className="w-6 h-6" />,
-    color: "#ED1C24"
-  }
-];
+import { CheckCircle, Search, Cpu, Layout, FileText, Settings, Rocket } from "lucide-react";
+import { useLanguage } from "@/components/LanguageContext";
 
 export default function Process() {
+  const { t } = useLanguage();
+
+  const steps = [
+    {
+      title: t("process", "step1_title"),
+      desc: t("process", "step1_desc"),
+      icon: <Search className="w-8 h-8" />,
+      color: "#ED1C24"
+    },
+    {
+      title: t("process", "step2_title"),
+      desc: t("process", "step2_desc"),
+      icon: <Layout className="w-8 h-8" />,
+      color: "#333333"
+    },
+    {
+      title: t("process", "step3_title"),
+      desc: t("process", "step3_desc"),
+      icon: <Cpu className="w-8 h-8" />,
+      color: "#ED1C24"
+    },
+    {
+      title: t("process", "step4_title"),
+      desc: t("process", "step4_desc"),
+      icon: <CheckCircle className="w-8 h-8" />,
+      color: "#333333"
+    }
+  ];
+
   return (
-    <section id="proceso" className="py-20 md:py-32 bg-[#080808] relative overflow-hidden">
+    <section id="proceso" className="py-24 md:py-32 bg-[#050505] relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-20 md:mb-32">
-          <motion.span 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-[#ED1C24] font-black uppercase tracking-[0.4em] text-xs mb-6 block"
-          >
-            Metodología de Clase Mundial
-          </motion.span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter"
-          >
-            DEL PLANO A LA <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-800">REALIDAD</span>
-          </motion.h2>
+        <div className="text-center mb-24">
+          <span className="text-[#ED1C24] font-black uppercase tracking-[0.4em] text-xs mb-6 block">
+            {t("process", "tag")}
+          </span>
+          <h2 className="text-4xl md:text-8xl font-black text-white tracking-tighter italic">
+            {t("process", "title")} <br />
+            <span className="text-white/20 not-italic font-light">{t("process", "title_accent")}</span>
+          </h2>
         </div>
 
-        <div className="relative">
-          {/* Progress Line */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 h-full w-[1px] bg-white/5 hidden md:block" />
-          
-          <div className="space-y-12 md:space-y-32">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
+            {/* Connecting line for desktop */}
+            <div className="hidden md:block absolute top-[60px] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            
             {steps.map((step, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
-                initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: idx * 0.1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                className={`flex flex-col md:flex-row items-center gap-8 md:gap-24 ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+                className="relative flex flex-col items-center text-center group"
               >
-                {/* Content Side */}
-                <div className={`flex-1 text-center ${idx % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full mb-6 text-white/20 font-black text-2xl border border-white/5 bg-white/5`}>
+                <div className="w-[120px] h-[120px] rounded-full bg-[#111111] border border-white/5 flex items-center justify-center mb-8 relative z-10 group-hover:border-[#ED1C24]/50 transition-all duration-500 overflow-hidden shadow-2xl">
+                  {/* Glowing background */}
+                  <div className="absolute inset-0 bg-[#ED1C24] opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
+                  
+                  <div className="text-white group-hover:text-[#ED1C24] transition-colors duration-500">
+                    {step.icon}
+                  </div>
+                  
+                  {/* Step number */}
+                  <div className="absolute -top-1 -right-1 w-10 h-10 rounded-full bg-black border border-white/10 flex items-center justify-center text-[10px] font-black text-[#ED1C24] shadow-lg">
                     0{idx + 1}
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tighter mb-4">{step.title}</h3>
-                  <p className="text-gray-400 text-lg font-light leading-relaxed max-w-md mx-auto md:mx-0 ${idx % 2 === 0 ? 'md:ml-auto' : 'md:mr-auto'}">
-                    {step.desc}
-                  </p>
                 </div>
 
-                {/* Center Icon */}
-                <div className="relative z-20">
-                  <div className="w-16 h-16 md:w-24 md:h-24 bg-[#0A0A0A] border border-white/10 rounded-3xl rotate-45 flex items-center justify-center group hover:border-[#ED1C24] transition-all duration-500 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-                    <div className="-rotate-45 text-[#ED1C24] group-hover:scale-125 transition-transform duration-500">
-                      {step.icon}
-                    </div>
-                  </div>
-                  {/* Glow effect */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[#ED1C24]/10 blur-[40px] rounded-full pointer-events-none -z-10" />
-                </div>
-
-                {/* Empty side to balance layout */}
-                <div className="flex-1 hidden md:block" />
+                <h3 className="text-xl font-black text-white italic tracking-tighter mb-4 group-hover:text-[#ED1C24] transition-colors">
+                  {step.title}
+                </h3>
+                <p className="text-gray-500 text-sm font-light leading-relaxed max-w-[200px]">
+                  {step.desc}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Decorative large numbers behind */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[50vh] font-black text-white/[0.01] pointer-events-none select-none tracking-tighter">
-        FLOW
+        <div className="mt-24 text-center">
+            <div className="inline-flex items-center gap-6 px-10 py-6 bg-white/5 border border-white/10 rounded-full backdrop-blur-xl group hover:border-[#ED1C24]/30 transition-all">
+                <Rocket className="w-10 h-10 text-[#ED1C24] animate-pulse" />
+                <div className="text-left">
+                    <div className="text-white font-black italic tracking-tighter text-2xl group-hover:text-white transition-colors">Entrega puntual garantizada</div>
+                    <div className="text-gray-500 text-xs font-bold uppercase tracking-widest group-hover:text-gray-300 transition-colors">Cumplimiento de cronogramas críticos</div>
+                </div>
+            </div>
+        </div>
       </div>
     </section>
   );

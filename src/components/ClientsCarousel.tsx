@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/components/LanguageContext";
 
 export default function ClientsCarousel() {
+  const { language } = useLanguage();
   const clients = [
     { name: "Pepsi", logo: "/images/originales/CLIENTES/Pepsi-Logo-2014-present.jpg" },
     { name: "Alen", logo: "/images/originales/CLIENTES/alen prov.png" },
@@ -13,9 +15,13 @@ export default function ClientsCarousel() {
   return (
     <section id="clientes" className="py-12 md:py-20 bg-[#080808] border-y border-white/5 overflow-hidden">
       <div className="container mx-auto px-6 mb-12 text-center md:text-left flex flex-col md:flex-row md:items-center gap-6">
-        <h2 className="text-[#ED1C24] font-black uppercase tracking-[0.3em] text-[10px] md:text-xs">Confianza corporativa</h2>
+        <h2 className="text-[#ED1C24] font-black uppercase tracking-[0.3em] text-[10px] md:text-xs">
+          {language === "es" ? "Confianza corporativa" : "Corporate Trust"}
+        </h2>
         <div className="h-[1px] bg-white/10 flex-1 hidden md:block"></div>
-        <p className="text-gray-500 font-bold text-xs tracking-tight uppercase">Líderes que respaldan nuestra calidad</p>
+        <p className="text-gray-500 font-bold text-xs tracking-tight uppercase">
+          {language === "es" ? "Líderes que respaldan nuestra calidad" : "Leaders backing our quality"}
+        </p>
       </div>
 
       <div className="relative w-full flex overflow-hidden group">

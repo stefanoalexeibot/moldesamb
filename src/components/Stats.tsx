@@ -1,66 +1,65 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { motion, useInView, useMotionValue, useTransform, animate, MotionValue } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { useLanguage } from "@/components/LanguageContext";
 
-interface StatProps {
-  value: string;
-  label: string;
-  suffix?: string;
-  prefix?: string;
-  decimals?: number;
-}
+const AnimatedCounter = ({ value, label, suffix = "", delay = 0 }: { value: number, label: string, suffix?: string, delay?: number }) => {
+  const count = useMotionValue(0);
+  
+  // Create a separate transform that always returns a string to avoid type conflicts
+  const displayValue = useTransform(count, (latest): string => {
+    if (value % 1 !== 0) {
+      return latest.toFixed(3);
+    }
+    return Math.round(latest).toString();
+  });
 
-function Counter({ value, label, suffix = "", prefix = "", decimals = 0 }: StatProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const [count, setCount] = useState(0);
-
-  const numericValue = parseFloat(value.replace(/[^0-9.]/g, ""));
 
   useEffect(() => {
     if (isInView) {
-      let start = 0;
-      const end = numericValue;
-      const duration = 2000; // 2 seconds
-      const increment = end / (duration / 16);
-      
-      const timer = setInterval(() => {
-        start += increment;
-        if (start >= end) {
-          setCount(end);
-          clearInterval(timer);
-        } else {
-          setCount(start);
-        }
-      }, 16);
-      return () => clearInterval(timer);
+      const animation = animate(count, value, { duration: 2, delay, ease: "easeOut" });
+      return animation.stop;
     }
-  }, [isInView, numericValue]);
+  }, [isInView, value, delay, count]);
 
   return (
-    <div ref={ref} className="flex flex-col items-center justify-center p-8 border-r border-white/5 last:border-0 group">
-      <div className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-2 flex items-baseline gap-1">
-        <span className="text-[#ED1C24]">{prefix}</span>
-        <span>{count.toFixed(decimals)}</span>
-        <span className="text-xl md:text-2xl text-gray-500 font-light">{suffix}</span>
+    <div ref={ref} className="flex flex-col items-center justify-center p-8 bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl group hover:border-[#ED1C24]/50 transition-all duration-500">
+      <div className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-2 group-hover:scale-110 transition-transform duration-500 flex items-baseline">
+        <motion.span>{displayValue}</motion.span>
+        <span className="text-[#ED1C24] text-3xl not-italic ml-1">{suffix}</span>
       </div>
-      <div className="text-gray-500 text-[10px] md:text-xs font-black uppercase tracking-[0.3em] group-hover:text-[#ED1C24] transition-colors duration-500">
-        {label}
-      </div>
+      <div className="text-gray-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-center">{label}</div>
     </div>
   );
-}
+};
 
 export default function Stats() {
+  const { t } = useLanguage();
+  
+  const stats = [
+    { value: 10, label: t("stats", "years"), suffix: "+" },
+    { value: 500, label: t("stats", "projects"), suffix: "+" },
+    { value: 0.005, label: t("stats", "precision"), suffix: t("stats", "precision_suffix") },
+    { value: 100, label: t("stats", "guarantee"), suffix: "%" },
+  ];
+
   return (
-    <section className="bg-[#0A0A0A] relative z-20 border-b border-white/5">
+    <section className="py-20 bg-[#050505] relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 bg-[#0F0F0F] border-x border-white/5">
-          <Counter prefix="+" value="10" label="Años Experiencia" suffix="AÑOS" />
-          <Counter prefix="+" value="500" label="Proyectos" suffix="PIEZAS" />
-          <Counter prefix="±" value="0.005" label="Precisión" suffix="MM" decimals={3} />
-          <Counter value="100" label="Garantía" suffix="%" />
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+          {stats.map((stat, idx) => (
+            <div key={idx}>
+              <AnimatedCounter 
+                value={stat.value} 
+                label={stat.label} 
+                suffix={stat.suffix} 
+                delay={idx * 0.1} 
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>

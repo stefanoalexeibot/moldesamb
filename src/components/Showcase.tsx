@@ -2,48 +2,53 @@
 
 import { motion } from "framer-motion";
 import TiltCard from "./TiltCard";
-
-const projects = [
-  {
-    title: "Cavidad de Molde",
-    category: "Acero P20",
-    image: "/images/originales/M0004- AM441575.jpeg",
-    spec: "Tolerancia: ±0.005mm"
-  },
-  {
-    title: "Inserto de Precisión",
-    category: "H13 Templado",
-    image: "/images/originales/M0004- AM441583.jpeg",
-    spec: "Acabado: Espejo A1"
-  },
-  {
-    title: "Componente Crítico",
-    category: "Inoxidable 420",
-    image: "/images/originales/M0004- AM441584.jpeg",
-    spec: "Maquinado: CNC 4 Ejes"
-  },
-  {
-    title: "Herramental HAAS",
-    category: "Aluminio 6061-T6",
-    image: "/images/originales/ST-28.png",
-    spec: "Dureza: 55-60 HRC"
-  }
-];
+import { useLanguage } from "@/components/LanguageContext";
 
 export default function Showcase() {
+  const { t } = useLanguage();
+
+  const projects = [
+    {
+      title: t("showcase", "project1_title"),
+      category: "Acero P20",
+      image: "/images/originales/M0004- AM441575.jpeg",
+      spec: t("showcase", "project1_spec")
+    },
+    {
+      title: t("showcase", "project2_title"),
+      category: "H13 Templado",
+      image: "/images/originales/M0004- AM441583.jpeg",
+      spec: t("showcase", "project2_spec")
+    },
+    {
+      title: t("showcase", "project3_title"),
+      category: "Inoxidable 420",
+      image: "/images/originales/M0004- AM441584.jpeg",
+      spec: t("showcase", "project3_spec")
+    },
+    {
+      title: t("showcase", "project4_title"),
+      category: "Aluminio 6061-T6",
+      image: "/images/originales/ST-28.png",
+      spec: t("showcase", "project4_spec")
+    }
+  ];
+
   return (
     <section id="showcase" className="py-20 md:py-32 bg-[#0A0A0A] relative overflow-hidden perspective-1000">
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24 gap-8">
           <div className="max-w-2xl">
-            <span className="text-[#ED1C24] font-black uppercase tracking-[0.4em] text-xs mb-6 block">Portfolio de Herramentales</span>
+            <span className="text-[#ED1C24] font-black uppercase tracking-[0.4em] text-xs mb-6 block">
+              {t("showcase", "tag")}
+            </span>
             <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter italic">
-              NUESTRA <span className="text-white/20 not-italic font-light">ENTREGA</span> <br />
-              TÉCNICA
+              {t("showcase", "title")} <br />
+              <span className="text-white/20 not-italic font-light">{t("showcase", "title_accent")}</span>
             </h2>
           </div>
           <p className="text-gray-500 text-lg font-light max-w-sm">
-            Visualiza la calidad y complejidad de los maquinados realizados en nuestra planta con tecnología HAAS.
+            {t("showcase", "subtitle")}
           </p>
         </div>
 
@@ -86,7 +91,7 @@ export default function Showcase() {
         <div className="mt-16 text-center">
             <button className="text-white/40 hover:text-white text-xs font-black uppercase tracking-[0.4em] transition-colors flex items-center gap-4 mx-auto group">
                 <div className="h-[1px] w-12 bg-white/10 group-hover:bg-[#ED1C24] transition-colors" />
-                Ver Todos los Proyectos
+                {t("showcase", "view_all")}
                 <div className="h-[1px] w-12 bg-white/10 group-hover:bg-[#ED1C24] transition-colors" />
             </button>
         </div>

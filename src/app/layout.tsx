@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   description: "Fabricación y mantenimiento de moldes de alta precisión con tecnología CNC Haas. Servimos a industrias líderes como Pepsi y Alen.",
 };
 
+import { LanguageProvider } from "@/components/LanguageContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -21,12 +23,13 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={inter.className}>
-        <CustomCursor />
-        <Navbar />
-        {children}
-        <Footer />
+        <LanguageProvider>
+          <CustomCursor />
+          <Navbar />
+          {children}
+          <Footer />
+        </LanguageProvider>
       </body>
-
     </html>
   );
 }

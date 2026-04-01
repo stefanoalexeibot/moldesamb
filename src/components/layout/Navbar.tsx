@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Settings } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { useLanguage } from "@/components/LanguageContext";
+import { Menu, X, Settings, Globe } from "lucide-react";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -13,6 +14,7 @@ function cn(...inputs: ClassValue[]) {
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,13 +25,17 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Inicio", href: "#inicio" },
-    { name: "Servicios", href: "#servicios" },
-    { name: "Proceso", href: "#proceso" },
-    { name: "Showcase", href: "#showcase" },
-    { name: "Tecnología", href: "#tecnologia" },
-    { name: "Contacto", href: "#contacto" },
+    { name: t("nav", "home"), href: "#inicio" },
+    { name: t("nav", "services"), href: "#servicios" },
+    { name: t("nav", "process"), href: "#proceso" },
+    { name: t("nav", "showcase"), href: "#showcase" },
+    { name: t("nav", "tech"), href: "#tecnologia" },
+    { name: t("nav", "contact"), href: "#contacto" },
   ];
+
+  const toggleLanguage = () => {
+    setLanguage(language === "es" ? "en" : "es");
+  };
 
   return (
     <nav
@@ -45,10 +51,7 @@ export default function Navbar() {
           <div className="bg-[#ED1C24] p-1.5 transition-transform group-hover:rotate-12">
             <Settings className="w-6 h-6 text-white" />
           </div>
-          <span className={cn(
-            "text-2xl font-black tracking-tighter",
-            isScrolled ? "text-[#1A1A1A]" : "text-white"
-          )}>
+          <span className="text-2xl font-black tracking-tighter text-white">
             AMB<span className="font-light">PRECISION</span>
           </span>
         </Link>
@@ -59,38 +62,49 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={cn(
-                "text-sm font-bold uppercase tracking-widest hover:text-[#ED1C24] transition-colors",
-                isScrolled ? "text-[#1A1A1A]" : "text-white/80 hover:text-white"
-              )}
+              className="text-sm font-bold uppercase tracking-widest text-white/80 hover:text-white transition-colors"
             >
               {link.name}
             </Link>
           ))}
+          
+          <button 
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#ED1C24] bg-[#ED1C24]/10 px-3 py-1.5 border border-[#ED1C24]/30 hover:bg-[#ED1C24] hover:text-white transition-all duration-300"
+          >
+            <Globe className="w-3.5 h-3.5" />
+            {language.toUpperCase()}
+          </button>
+
           <Link
             href="#contacto"
-            className="bg-[#ED1C24] text-white text-xs font-black px-6 py-2.5 uppercase tracking-widest hover:bg-[#1A1A1A] transition-all"
+            className="bg-[#ED1C24] text-white text-xs font-black px-6 py-2.5 uppercase tracking-widest hover:bg-white hover:text-black transition-all"
           >
-            Cotizar
+            {t("nav", "quote")}
           </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          className={cn(
-            "md:hidden p-2",
-            isScrolled ? "text-[#1A1A1A]" : "text-white"
-          )}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        <div className="flex items-center gap-4 md:hidden">
+          <button 
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#ED1C24] bg-[#ED1C24]/10 px-3 py-1.5 border border-[#ED1C24]/30"
+          >
+            {language.toUpperCase()}
+          </button>
+          <button
+            className="text-white p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       <div
         className={cn(
-          "fixed inset-0 bg-[#1A1A1A] z-40 transition-transform duration-500 md:hidden flex flex-col items-center justify-center gap-8",
+          "fixed inset-0 bg-[#0A0A0A] z-40 transition-transform duration-500 md:hidden flex flex-col items-center justify-center gap-8",
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
@@ -110,6 +124,16 @@ export default function Navbar() {
             {link.name}
           </Link>
         ))}
+        <button 
+          onClick={() => {
+            toggleLanguage();
+            setIsMobileMenuOpen(false);
+          }}
+          className="text-[#ED1C24] font-black uppercase tracking-widest flex items-center gap-2"
+        >
+          <Globe className="w-5 h-5" />
+          {language === "es" ? "ENGLISH" : "ESPAÑOL"}
+        </button>
       </div>
     </nav>
   );

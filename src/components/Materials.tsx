@@ -1,80 +1,81 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Database, Shield, Layers, Zap } from "lucide-react";
-
-const materialCategories = [
-  {
-    title: "Metales Industriales",
-    description: "Aceros de grado herramental y aleaciones de alta resistencia.",
-    icon: <Database className="w-6 h-6" />,
-    items: [
-      { name: "Acero P20 / H13", spec: "Moldes de inyección", detail: "Dureza 28-32 HRC" },
-      { name: "Acero Inoxidable", spec: "304 / 316 / 420", detail: "Grado alimenticio/médico" },
-      { name: "Aluminio 6061-T6", spec: "Prototipado rápido", detail: "Excelente maquinabilidad" },
-      { name: "Bronce / Cobre", spec: "Insertos térmicos", detail: "Alta conductividad" }
-    ]
-  },
-  {
-    title: "Polímeros de Ingeniería",
-    description: "Plásticos técnicos con propiedades mecánicas superiores.",
-    icon: <Layers className="w-6 h-6" />,
-    items: [
-      { name: "Nylon 6 / 66", spec: "Piezas mecánicas", detail: "Alta resistencia al desgaste" },
-      { name: "Delrin (Acetal)", spec: "Engranajes / Bujes", detail: "Estabilidad dimensional" },
-      { name: "PVC Alta Densidad", spec: "Componentes químicos", detail: "Resistencia a la corrosión" },
-      { name: "UHMWPE", spec: "Guías de deslizamiento", detail: "Bajo coeficiente de fricción" }
-    ]
-  }
-];
+import { Package, Shield, Layers, Zap } from "lucide-react";
+import { useLanguage } from "@/components/LanguageContext";
 
 export default function Materials() {
+  const { t } = useLanguage();
+
+  const materialGroups = [
+    {
+      category: "Metales Industriales",
+      items: [
+        { name: "Acero P20 / H13", spec: "Moldes de inyección y alta temperatura" },
+        { name: "Acero Inoxidable 420", spec: "Resistencia a corrosión y grado médico" },
+        { name: "Aluminio 6061-T6", spec: "Prototipado rápido y herramentales ligeros" }
+      ],
+      icon: <Layers className="w-6 h-6" />
+    },
+    {
+      category: "Polímeros de Ingeniería",
+      items: [
+        { name: "Nylon / Delrin (Acetal)", spec: "Engranes y bujes de precisión" },
+        { name: "PVC / Policarbonato", spec: "Componentes transparentes y estructurales" },
+        { name: "Durostone / G10", spec: "Aislamiento térmico y eléctrico" }
+      ],
+      icon: <Package className="w-6 h-6" />
+    },
+    {
+      category: t("materials", "special"),
+      items: [
+        { name: "Juntas y Empaques", spec: "Nitrilos, Vitón y Silicones grado alimenticio" },
+        { name: "Bronce Fosforado", spec: "Insertos antidesgaste y conductores" }
+      ],
+      icon: <Zap className="w-6 h-6" />
+    }
+  ];
+
   return (
-    <section id="materiales" className="py-20 md:py-32 bg-[#080808] relative overflow-hidden">
+    <section className="py-24 bg-[#050505] relative overflow-hidden border-t border-white/5">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-3xl mb-16 md:mb-24">
-          <span className="text-[#ED1C24] font-black uppercase tracking-[0.4em] text-xs mb-6 block">Capacidad Multimaterial</span>
-          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 italic">
-            DOMINIO DE <span className="text-white/20 not-italic font-light">MATERIALES</span>
-          </h2>
-          <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
-            Desde aceros de alta dureza hasta polímeros de ingeniería avanzados, 
-            maquinamos una amplia gama de sustratos para satisfacer las especificaciones más exigentes.
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+          <div className="max-w-2xl">
+            <span className="text-[#ED1C24] font-black uppercase tracking-[0.4em] text-xs mb-6 block">
+              {t("materials", "tag")}
+            </span>
+            <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter italic">
+              {t("materials", "title")}
+            </h2>
+          </div>
+          <p className="text-gray-500 text-lg font-light max-w-sm border-l border-[#ED1C24]/30 pl-8">
+            {t("materials", "subtitle")}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-          {materialCategories.map((category, idx) => (
-            <motion.div 
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {materialGroups.map((group, idx) => (
+            <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.2 }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="bg-[#0A0A0A] border border-white/5 rounded-3xl p-8 md:p-12 hover:border-[#ED1C24]/30 transition-all duration-700 group relative overflow-hidden"
+              className="p-10 bg-[#0A0A0A] border border-white/5 rounded-[40px] hover:border-[#ED1C24]/30 transition-all duration-500 group"
             >
-              {/* Decorative accent */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#ED1C24]/5 blur-[60px] rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-[#ED1C24]/10 transition-colors" />
-              
-              <div className="flex items-center gap-6 mb-12">
-                <div className="bg-[#1A1A1A] p-4 rounded-2xl text-[#ED1C24] shadow-xl group-hover:bg-[#ED1C24] group-hover:text-white transition-all duration-500">
-                  {category.icon}
+              <div className="flex items-center gap-4 mb-10">
+                <div className="p-4 bg-black rounded-2xl text-[#ED1C24] group-hover:scale-110 transition-transform duration-500 shadow-xl">
+                  {group.icon}
                 </div>
-                <div>
-                  <h3 className="text-2xl font-black text-white uppercase tracking-tight italic">{category.title}</h3>
-                  <p className="text-gray-500 text-sm">{category.description}</p>
-                </div>
+                <h3 className="text-xl font-black text-white italic tracking-tighter">{group.category}</h3>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                {category.items.map((item, iIdx) => (
-                  <div key={iIdx} className="bg-[#0F0F0F] p-5 rounded-2xl border border-white/5 hover:border-white/10 transition-all duration-300">
-                    <div className="text-white font-bold mb-1 flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#ED1C24]" />
-                        {item.name}
-                    </div>
-                    <div className="text-[#ED1C24] text-[10px] font-black uppercase tracking-widest mb-1">{item.spec}</div>
-                    <div className="text-gray-500 text-[10px] font-medium">{item.detail}</div>
+              <div className="space-y-8">
+                {group.items.map((item, iIdx) => (
+                  <div key={iIdx} className="relative pl-6">
+                    <div className="absolute left-0 top-2 w-[4px] h-[4px] rounded-full bg-[#ED1C24]" />
+                    <div className="text-white font-bold text-sm mb-1 uppercase tracking-wider">{item.name}</div>
+                    <div className="text-gray-500 text-xs font-medium leading-relaxed">{item.spec}</div>
                   </div>
                 ))}
               </div>
@@ -82,23 +83,17 @@ export default function Materials() {
           ))}
         </div>
 
-        {/* Feature bar for special materials */}
-        <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="mt-12 bg-white/[0.02] border border-white/5 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6"
-        >
-            <div className="flex items-center gap-4 text-gray-400 text-sm font-bold uppercase tracking-widest">
-                <Shield className="text-[#ED1C24] w-5 h-5" />
-                Materiales Especiales: Garlock, Juntas, Durostone, PVC, Teflon (PTFE).
+        <div className="mt-20 py-8 border-y border-white/5 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full border border-[#ED1C24]/30 flex items-center justify-center">
+                    <Shield className="text-[#ED1C24] w-6 h-6" />
+                </div>
+                <div className="text-white/80 font-bold uppercase tracking-widest text-xs">Certificados de calidad de origen</div>
             </div>
-            <div className="flex items-center gap-2 text-white font-bold text-sm italic">
-                <Zap className="text-[#ED1C24] w-5 h-5 fill-[#ED1C24]" />
-                Stock permanente para aplicaciones críticas
+            <div className="text-gray-500 text-xs font-black uppercase tracking-[0.3em]">
+                {t("materials", "stock")}
             </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

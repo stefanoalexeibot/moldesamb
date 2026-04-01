@@ -1,3 +1,5 @@
+"use client";
+
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import ClientsCarousel from "@/components/ClientsCarousel";
@@ -8,12 +10,12 @@ import Materials from "@/components/Materials";
 import Technology from "@/components/Technology";
 import Contact from "@/components/Contact";
 import StickyCTA from "@/components/StickyCTA";
-import CustomCursor from "@/components/CustomCursor";
+import Testimonials from "@/components/Testimonials";
+import FloatingPart from "@/components/FloatingPart";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0A0A0A] text-white selection:bg-[#ED1C24] selection:text-white">
-      <CustomCursor />
+    <main className="min-h-screen bg-[#050505]">
       <Hero />
       <Stats />
       <ClientsCarousel />
@@ -21,7 +23,11 @@ export default function Home() {
       <Process />
       <Showcase />
       <Materials />
-      <Technology />
+      <div className="relative">
+          <FloatingPart />
+          <Technology />
+      </div>
+      <Testimonials />
       <Contact />
       <StickyCTA />
     </main>
