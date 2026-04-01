@@ -25,12 +25,11 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: t("nav", "home"), href: "#inicio" },
-    { name: t("nav", "services"), href: "#servicios" },
-    { name: t("nav", "process"), href: "#proceso" },
-    { name: t("nav", "showcase"), href: "#showcase" },
-    { name: t("nav", "tech"), href: "#tecnologia" },
-    { name: t("nav", "contact"), href: "#contacto" },
+    { name: t("nav", "home"), href: "/#inicio" },
+    { name: t("nav", "services"), href: "/#servicios" },
+    { name: t("nav", "showcase"), href: "/portafolio" },
+    { name: t("nav", "tech"), href: "/#tecnologia" },
+    { name: t("nav", "contact"), href: "/#contacto" },
   ];
 
   const toggleLanguage = () => {
@@ -77,7 +76,7 @@ export default function Navbar() {
           </button>
 
           <Link
-            href="#contacto"
+            href="/#contacto"
             className="bg-[#ED1C24] text-white text-xs font-black px-6 py-2.5 uppercase tracking-widest hover:bg-white hover:text-black transition-all"
           >
             {t("nav", "quote")}
