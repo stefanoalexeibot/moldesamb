@@ -150,8 +150,8 @@ export default function PortfolioPage() {
 
           <div className="relative rounded-2xl overflow-hidden border border-white/5">
             <BeforeAfterSlider
-              beforeImage={`${moldes2Folder}/${moldes2Files[0]}`}
-              afterImage={`${moldes2Folder}/${moldes2Files[1]}`}
+              beforeImage={`${moldesFolder}/WhatsApp Image 2026-04-01 at 10.32.20 AM.jpeg`}
+              afterImage={`${moldesFolder}/WhatsApp Image 2026-04-01 at 10.32.18 AM.jpeg`}
               beforeLabel="Antes · Maquinado Inicial"
               afterLabel="Después · Acabado Espejo A1"
               className="h-[320px] md:h-[500px]"
