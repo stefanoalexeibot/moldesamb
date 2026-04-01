@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import TiltCard from "./TiltCard";
 import { useLanguage } from "@/components/LanguageContext";
+import Link from "next/link";
 
 export default function Showcase() {
   const { t } = useLanguage();
@@ -89,11 +90,11 @@ export default function Showcase() {
         </div>
 
         <div className="mt-16 text-center">
-            <button className="text-white/40 hover:text-white text-xs font-black uppercase tracking-[0.4em] transition-colors flex items-center gap-4 mx-auto group">
+            <Link href="/portafolio" className="text-white/40 hover:text-white text-xs font-black uppercase tracking-[0.4em] transition-colors flex items-center gap-4 mx-auto group w-max">
                 <div className="h-[1px] w-12 bg-white/10 group-hover:bg-[#ED1C24] transition-colors" />
                 {t("showcase", "view_all")}
                 <div className="h-[1px] w-12 bg-white/10 group-hover:bg-[#ED1C24] transition-colors" />
-            </button>
+            </Link>
         </div>
       </div>
     </section>

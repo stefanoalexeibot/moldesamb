@@ -129,6 +129,20 @@ export const translations = {
       cta_start: "Iniciar Proyecto",
       certified: "Certificados de Calidad",
     },
+    portfolio: {
+      title: "PORTAFOLIO DE",
+      title_accent: "TRABAJOS",
+      subtitle: "Explora nuestra galería de piezas maquinadas y moldes de inyección con precisión micrométrica.",
+      filter_all: "Todos",
+      filter_milling: "Fresado CNC",
+      filter_turning: "Torneado CNC",
+      filter_molds: "Moldes",
+      filter_edm: "Electroerosión",
+      material_label: "Material:",
+      tolerance_label: "Tolerancia:",
+      close: "Cerrar",
+      back_home: "Volver a Inicio"
+    },
     footer: {
       desc: "Excelencia en ingeniería de moldes y maquinado de precisión con tecnología HAAS.",
       rights: "Todos los derechos reservados.",
@@ -263,6 +277,20 @@ export const translations = {
     general: {
       cta_start: "Start Project",
       certified: "Quality Certificates",
+    },
+    portfolio: {
+      title: "WORK",
+      title_accent: "PORTFOLIO",
+      subtitle: "Explore our gallery of micrometric precision machined parts and injection molds.",
+      filter_all: "All",
+      filter_milling: "CNC Milling",
+      filter_turning: "CNC Turning",
+      filter_molds: "Molds",
+      filter_edm: "EDM",
+      material_label: "Material:",
+      tolerance_label: "Tolerance:",
+      close: "Close",
+      back_home: "Back to Home"
     },
     footer: {
       desc: "Excellence in mold engineering and precision machining with HAAS technology.",
