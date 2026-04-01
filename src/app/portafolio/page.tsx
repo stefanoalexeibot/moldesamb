@@ -59,6 +59,27 @@ const tolerances = ["±0.005mm", "±0.002mm", "±0.008mm", "±0.005mm", "±0.01m
 const categories: Array<"milling" | "turning" | "molds" | "edm"> = ["molds", "molds", "edm", "milling", "molds", "molds", "edm", "molds", "milling", "molds", "molds", "edm", "milling", "molds", "molds", "edm", "milling", "molds"];
 const categories2: Array<"milling" | "turning" | "molds" | "edm"> = ["molds", "edm", "molds", "milling", "molds", "molds", "edm", "milling", "molds"];
 
+// ── MOLDES 3 (16 fotos) ──────────────────────────────────────────────────────
+const moldes3Folder = "/images/MOLDES 3";
+const moldes3Files = [
+  "WhatsApp Image 2026-04-01 at 10.46.25 AM.jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.26 AM.jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.27 AM.jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.27 AM (1).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.27 AM (2).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.27 AM (3).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.27 AM (4).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.28 AM.jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.28 AM (1).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.28 AM (2).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.29 AM.jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.29 AM (1).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.29 AM (2).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.29 AM (3).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.29 AM (4).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.46.30 AM.jpeg",
+];
+
 const portfolioProjects: Project[] = [
   // Original 3 from originales folder
   {
@@ -97,6 +118,14 @@ const portfolioProjects: Project[] = [
     image: `${moldes2Folder}/${file}`,
     material: materials[(i + 3) % materials.length],
     tolerance: tolerances[(i + 2) % tolerances.length],
+  })),
+  // MOLDES 3 folder (16 images)
+  ...moldes3Files.map((file, i) => ({
+    id: 50 + i,
+    category: categories[i % categories.length],
+    image: `${moldes3Folder}/${file}`,
+    material: materials[(i + 1) % materials.length],
+    tolerance: tolerances[(i + 3) % tolerances.length],
   })),
 ];
 
