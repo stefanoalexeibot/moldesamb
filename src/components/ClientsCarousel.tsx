@@ -8,7 +8,7 @@ export default function ClientsCarousel() {
   const clients = [
     { name: "Nemak", logo: "/images/originales/CLIENTES/nemak-logo-png_seeklogo-359090.png" },
     { name: "LEGO", logo: "/images/originales/CLIENTES/LEGO-Logo.png" },
-    { name: "Whirlpool", logo: "/images/originales/CLIENTES/whirlpool logo.png" },
+    { name: "Whirlpool", logo: "/images/originales/CLIENTES/whirlpool.png" },
     { name: "Metalsa", logo: "/images/originales/CLIENTES/metalsa-logo.webp" },
     { name: "Mattel", logo: "/images/originales/CLIENTES/Mattel-Logo.png" },
     { name: "Carrier", logo: "/images/originales/CLIENTES/Carrier-Logo.jpg" },

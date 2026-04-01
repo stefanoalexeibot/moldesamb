@@ -57,10 +57,10 @@ const machines = [
     model: "ST-15",
     translationKey: "machine4",
     images: [
-      "/images/originales/ST15_1/image_800x534_2.jpg",
-      "/images/originales/ST15_1/image_800x534_1.jpg",
-      "/images/originales/ST15_1/image_800x534_3.jpg",
-      "/images/originales/ST15_1/image_800x534_4.jpg",
+      "/images/originales/ST15_2/image_800x534_2.jpg",
+      "/images/originales/ST15_2/image_800x534_1.jpg",
+      "/images/originales/ST15_2/image_800x534_3.jpg",
+      "/images/originales/ST15_2/image_800x534_4.jpg",
     ],
     specs: {
       travels: "200 x 406 mm",

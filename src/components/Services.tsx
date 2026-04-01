@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MoveRight, Cpu, Layout, Settings } from "lucide-react";
+import { MoveRight, Cpu, Layout, Settings, Wrench } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
 
 export default function Services() {
@@ -21,6 +21,13 @@ export default function Services() {
       icon: <Settings className="w-10 h-10" />,
       image: "/images/MOLDES 2/WhatsApp Image 2026-04-01 at 10.28.50 AM.jpeg",
       features: ["Ajuste de cavidades", "Limpieza ultrasónica", "Reparación de sistemas"]
+    },
+    {
+      title: t("services", "mold_repair"),
+      desc: t("services", "mold_repair_desc"),
+      icon: <Wrench className="w-10 h-10" />,
+      image: "/images/MOLDES/WhatsApp Image 2026-04-01 at 10.32.21 AM.jpeg",
+      features: ["Soldadura láser", "Reconstrucción", "Pulido espejo"]
     },
     {
       title: t("services", "precision_parts"),
@@ -44,7 +51,7 @@ export default function Services() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
           {services.map((service, idx) => (
             <motion.div
               key={idx}

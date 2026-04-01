@@ -1,89 +1,139 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Settings } from "lucide-react";
+import { Canvas } from "@react-three/fiber";
+import { Environment, Float, PresentationControls, ContactShadows } from "@react-three/drei";
+import { useRef } from "react";
+import * as THREE from "three";
 
-export default function FloatingPart() {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+function MoldModel() {
+  const group = useRef<THREE.Group>(null);
+  
+  // Custom dark metallic material for the main mold blocks
+  const moldMaterial = new THREE.MeshStandardMaterial({
+    color: "#2C2C2C",
+    metalness: 0.8,
+    roughness: 0.2,
+  });
 
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
+  // Chrome material for guide pins & precision cylinders
+  const chromeMaterial = new THREE.MeshStandardMaterial({
+    color: "#e0e0e0",
+    metalness: 1,
+    roughness: 0.1,
+  });
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
+  // Hot red glowing material representing the plastic part/cavity
+  const cavityMaterial = new THREE.MeshStandardMaterial({
+    color: "#ED1C24",
+    metalness: 0.5,
+    roughness: 0.2,
+    emissive: "#ED1C24",
+    emissiveIntensity: 0.8,
+  });
 
   return (
-    <div
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative w-full h-[600px] flex items-center justify-center perspective-1000"
-    >
-      <motion.div
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: "preserve-3d",
-        }}
-        className="relative w-80 h-80 bg-gradient-to-br from-[#1A1A1A] via-[#0A0A0A] to-[#1A1A1A] border-2 border-white/10 rounded-[60px] shadow-[0_0_100px_rgba(237,28,36,0.1)] flex items-center justify-center group"
-      >
-        {/* Inner layers for depth */}
-        <div 
-          style={{ transform: "translateZ(50px)" }}
-          className="absolute inset-4 border-2 border-[#ED1C24]/30 rounded-[45px] flex items-center justify-center overflow-hidden"
-        >
-             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
-             <Settings className="w-32 h-32 text-[#ED1C24] animate-spin-slow group-hover:scale-125 transition-transform duration-1000" />
+    <group ref={group}>
+      {/* Mold Base Bottom Plate */}
+      <mesh material={moldMaterial} position={[0, -0.6, 0]}>
+        <boxGeometry args={[4, 0.4, 4]} />
+      </mesh>
+      
+      {/* Mold Core Plate */}
+      <mesh material={moldMaterial} position={[0, 0, 0]}>
+        <boxGeometry args={[4, 0.8, 4]} />
+      </mesh>
+
+      {/* Guide Pins / Columns */}
+      <mesh material={chromeMaterial} position={[-1.6, 1, -1.6]}>
+        <cylinderGeometry args={[0.15, 0.15, 2.5, 32]} />
+      </mesh>
+      <mesh material={chromeMaterial} position={[1.6, 1, -1.6]}>
+        <cylinderGeometry args={[0.15, 0.15, 2.5, 32]} />
+      </mesh>
+      <mesh material={chromeMaterial} position={[-1.6, 1, 1.6]}>
+        <cylinderGeometry args={[0.15, 0.15, 2.5, 32]} />
+      </mesh>
+      <mesh material={chromeMaterial} position={[1.6, 1, 1.6]}>
+        <cylinderGeometry args={[0.15, 0.15, 2.5, 32]} />
+      </mesh>
+
+      {/* Center Core Detail */}
+      <mesh material={moldMaterial} position={[0, 0.5, 0]}>
+        <cylinderGeometry args={[1.2, 1.5, 0.2, 32]} />
+      </mesh>
+      
+      {/* The Injected Part / Red Highlight */}
+      <mesh material={cavityMaterial} position={[0, 0.7, 0]}>
+        <cylinderGeometry args={[0.8, 0.8, 0.3, 32]} />
+      </mesh>
+      
+      <mesh material={cavityMaterial} position={[0, 0.9, 0]}>
+        <sphereGeometry args={[0.4, 32, 32]} />
+      </mesh>
+
+      {/* Waterlines / Coolant ports on the side */}
+      <mesh material={chromeMaterial} position={[-2.05, 0, 1]}>
+        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} rotation={[0, 0, Math.PI / 2]} />
+      </mesh>
+      <mesh material={chromeMaterial} position={[-2.05, 0, -1]}>
+        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} rotation={[0, 0, Math.PI / 2]} />
+      </mesh>
+      <mesh material={chromeMaterial} position={[2.05, 0, 1]}>
+        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} rotation={[0, 0, Math.PI / 2]} />
+      </mesh>
+      <mesh material={chromeMaterial} position={[2.05, 0, -1]}>
+        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} rotation={[0, 0, Math.PI / 2]} />
+      </mesh>
+    </group>
+  );
+}
+
+export default function FloatingPart() {
+  return (
+    <div className="relative w-full h-[600px] flex items-center justify-center cursor-grab active:cursor-grabbing border-y border-white/5 bg-[#050505]">
+      
+      {/* Aesthetic overlay text */}
+      <div className="absolute top-10 left-6 md:left-12 z-10 pointer-events-none">
+          <div className="text-[#ED1C24] font-black uppercase tracking-[0.4em] text-[10px] drop-shadow-md mb-2">
+            Interacción 3D
+          </div>
+          <h3 className="text-white font-black italic text-4xl tracking-tighter uppercase drop-shadow-xl">
+            MOLDE DE <br/><span className="text-white/30">INYECCIÓN</span>
+          </h3>
+          <p className="text-gray-400 font-light max-w-xs mt-4 text-sm">
+            Diseño especializado de herramentales industriales interactuables. Arrastra el modelo para girarlo en 360°.
+          </p>
+      </div>
+
+      <div className="absolute top-12 right-6 md:right-12 z-10 hidden md:block">
+        <div className="bg-[#ED1C24] px-4 py-2 rounded-full font-black text-[10px] text-white tracking-widest uppercase animate-pulse">
+            Premium WebGL
         </div>
+      </div>
 
-        <div 
-          style={{ transform: "translateZ(100px)" }}
-          className="absolute inset-10 border border-white/5 bg-white/[0.02] backdrop-blur-xl rounded-[30px]"
-        />
-
-        <div 
-          style={{ transform: "translateZ(150px)" }}
-          className="absolute -top-4 -right-4 w-20 h-20 bg-[#ED1C24] rounded-2xl flex items-center justify-center text-white font-black text-xs shadow-2xl rotate-12"
+      {/* R3F Canvas */}
+      <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 5, 8], fov: 45 }}>
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow />
+        <spotLight position={[-10, 10, -10]} intensity={1} color="#ED1C24" penumbra={1} />
+        
+        <Environment preset="city" />
+        
+        <PresentationControls
+          global
+          config={{ mass: 2, tension: 500 }}
+          snap={{ mass: 4, tension: 1500 }}
+          rotation={[0.2, 0.4, 0]}
+          polar={[-Math.PI / 3, Math.PI / 3]}
+          azimuth={[-Math.PI, Math.PI]}
         >
-            PREMIUM
-        </div>
+          <Float rotationIntensity={0.6} floatIntensity={1} speed={2}>
+            <MoldModel />
+          </Float>
+        </PresentationControls>
 
-        {/* Glow behind */}
-        <div className="absolute inset-0 bg-[#ED1C24]/10 blur-[100px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-      </motion.div>
-
-      <style jsx>{`
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-        @keyframes spin-slow {
-          from { rotate: 0deg; }
-          to { rotate: 360deg; }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-      `}</style>
+        <ContactShadows position={[0, -1.8, 0]} opacity={0.8} scale={10} blur={2.5} far={4} />
+      </Canvas>
     </div>
   );
 }
