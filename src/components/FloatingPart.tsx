@@ -23,34 +23,34 @@ function MoldModel() {
   });
 
   const renderRibbedCavitySubtractions = (xPos: number) => (
-    <group position={[xPos, 0, 0]}>
+    <>
       {/* Top cone */}
-      <Subtraction position={[0, 1.2, 0]}>
+      <Subtraction position={[xPos, 1.2, 0]}>
         <cylinderGeometry args={[0.2, 0.6, 0.8, 32]} />
       </Subtraction>
       
       {/* Main ribbed body space */}
-      <Subtraction position={[0, 0.25, 0]}>
+      <Subtraction position={[xPos, 0.25, 0]}>
         <cylinderGeometry args={[0.6, 0.6, 1.1, 32]} />
       </Subtraction>
 
       {/* The Ribs (Torus outer shell will cut deeper into the mold block) */}
       {Array.from({ length: 6 }).map((_, i) => (
-        <Subtraction key={i} position={[0, 0.7 - i * 0.18, 0]} rotation={[Math.PI/2, 0, 0]}>
+        <Subtraction key={i} position={[xPos, 0.7 - i * 0.18, 0]} rotation={[Math.PI/2, 0, 0]}>
            <torusGeometry args={[0.6, 0.06, 16, 32]} />
         </Subtraction>
       ))}
       
       {/* Bottom cone */}
-      <Subtraction position={[0, -0.45, 0]}>
+      <Subtraction position={[xPos, -0.45, 0]}>
         <cylinderGeometry args={[0.6, 0.35, 0.3, 32]} />
       </Subtraction>
       
       {/* Neck */}
-      <Subtraction position={[0, -0.85, 0]}>
+      <Subtraction position={[xPos, -0.85, 0]}>
         <cylinderGeometry args={[0.3, 0.3, 0.5, 32]} />
       </Subtraction>
-    </group>
+    </>
   );
 
   return (
