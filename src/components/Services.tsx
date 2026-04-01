@@ -12,21 +12,21 @@ export default function Services() {
       title: t("services", "mold_design"),
       desc: t("services", "mold_design_desc"),
       icon: <Layout className="w-10 h-10" />,
-      image: "/images/originales/M0004- AM441575.jpeg",
+      image: "/images/MOLDES/WhatsApp Image 2026-04-01 at 10.32.17 AM.jpeg",
       features: ["CAD / CAM / CAE", "Simulación de llenado", "Optimización de ciclos"]
     },
     {
       title: t("services", "maintenance"),
       desc: t("services", "maintenance_desc"),
       icon: <Settings className="w-10 h-10" />,
-      image: "/images/originales/M0004- AM441583.jpeg",
+      image: "/images/MOLDES 2/WhatsApp Image 2026-04-01 at 10.28.50 AM.jpeg",
       features: ["Ajuste de cavidades", "Limpieza ultrasónica", "Reparación de sistemas"]
     },
     {
       title: t("services", "precision_parts"),
       desc: t("services", "precision_parts_desc"),
       icon: <Cpu className="w-10 h-10" />,
-      image: "/images/originales/M0004- AM441584.jpeg",
+      image: "/images/MOLDES 3/WhatsApp Image 2026-04-01 at 10.46.29 AM.jpeg",
       features: ["Alta precisión", "Lotes técnicos", "Prototipado rápido"]
     }
   ];

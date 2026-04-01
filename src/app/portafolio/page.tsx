@@ -80,6 +80,21 @@ const moldes3Files = [
   "WhatsApp Image 2026-04-01 at 10.46.30 AM.jpeg",
 ];
 
+// ── MOLDES 4 (10 fotos) ──────────────────────────────────────────────────────
+const moldes4Folder = "/images/MOLDES 4";
+const moldes4Files = [
+  "WhatsApp Image 2026-04-01 at 10.53.49 AM.jpeg",
+  "WhatsApp Image 2026-04-01 at 10.53.49 AM (1).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.53.50 AM.jpeg",
+  "WhatsApp Image 2026-04-01 at 10.53.50 AM (1).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.53.50 AM (2).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.53.50 AM (3).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.53.50 AM (4).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.53.50 AM (5).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.53.50 AM (6).jpeg",
+  "WhatsApp Image 2026-04-01 at 10.53.51 AM.jpeg",
+];
+
 const portfolioProjects: Project[] = [
   // Original 3 from originales folder
   {
@@ -126,6 +141,14 @@ const portfolioProjects: Project[] = [
     image: `${moldes3Folder}/${file}`,
     material: materials[(i + 1) % materials.length],
     tolerance: tolerances[(i + 3) % tolerances.length],
+  })),
+  // MOLDES 4 folder (10 images)
+  ...moldes4Files.map((file, i) => ({
+    id: 70 + i,
+    category: categories2[i % categories2.length],
+    image: `${moldes4Folder}/${file}`,
+    material: materials[(i + 2) % materials.length],
+    tolerance: tolerances[(i + 1) % tolerances.length],
   })),
 ];
 

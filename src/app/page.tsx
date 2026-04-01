@@ -5,6 +5,7 @@ import Stats from "@/components/Stats";
 import ClientsCarousel from "@/components/ClientsCarousel";
 import Services from "@/components/Services";
 import Process from "@/components/Process";
+import PhotoStrip from "@/components/PhotoStrip";
 import Showcase from "@/components/Showcase";
 import Materials from "@/components/Materials";
 import Technology from "@/components/Technology";
@@ -21,6 +22,7 @@ export default function Home() {
       <ClientsCarousel />
       <Services />
       <Process />
+      <PhotoStrip />
       <Showcase />
       <Materials />
       <div className="relative">

@@ -11,26 +11,26 @@ export default function Showcase() {
   const projects = [
     {
       title: t("showcase", "project1_title"),
-      category: "Acero P20",
-      image: "/images/originales/M0004- AM441575.jpeg",
+      category: "Acero P20 · Espejo A1",
+      image: "/images/MOLDES/WhatsApp Image 2026-04-01 at 10.32.18 AM.jpeg",
       spec: t("showcase", "project1_spec")
     },
     {
       title: t("showcase", "project2_title"),
-      category: "H13 Templado",
-      image: "/images/originales/M0004- AM441583.jpeg",
+      category: "H13 Templado ±0.002mm",
+      image: "/images/MOLDES/WhatsApp Image 2026-04-01 at 10.32.19 AM.jpeg",
       spec: t("showcase", "project2_spec")
     },
     {
       title: t("showcase", "project3_title"),
       category: "Inoxidable 420",
-      image: "/images/originales/M0004- AM441584.jpeg",
+      image: "/images/MOLDES 3/WhatsApp Image 2026-04-01 at 10.46.28 AM (2).jpeg",
       spec: t("showcase", "project3_spec")
     },
     {
       title: t("showcase", "project4_title"),
       category: "Aluminio 6061-T6",
-      image: "/images/originales/ST-28.png",
+      image: "/images/MOLDES 3/WhatsApp Image 2026-04-01 at 10.46.27 AM (2).jpeg",
       spec: t("showcase", "project4_spec")
     }
   ];
