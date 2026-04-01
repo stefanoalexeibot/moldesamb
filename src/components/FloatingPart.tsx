@@ -72,17 +72,17 @@ function MoldModel() {
       </mesh>
 
       {/* Waterlines / Coolant ports on the side */}
-      <mesh material={chromeMaterial} position={[-2.05, 0, 1]}>
-        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} rotation={[0, 0, Math.PI / 2]} />
+      <mesh material={chromeMaterial} position={[-2.05, 0, 1]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} />
       </mesh>
-      <mesh material={chromeMaterial} position={[-2.05, 0, -1]}>
-        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} rotation={[0, 0, Math.PI / 2]} />
+      <mesh material={chromeMaterial} position={[-2.05, 0, -1]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} />
       </mesh>
-      <mesh material={chromeMaterial} position={[2.05, 0, 1]}>
-        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} rotation={[0, 0, Math.PI / 2]} />
+      <mesh material={chromeMaterial} position={[2.05, 0, 1]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} />
       </mesh>
-      <mesh material={chromeMaterial} position={[2.05, 0, -1]}>
-        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} rotation={[0, 0, Math.PI / 2]} />
+      <mesh material={chromeMaterial} position={[2.05, 0, -1]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} />
       </mesh>
     </group>
   );
@@ -121,8 +121,7 @@ export default function FloatingPart() {
         
         <PresentationControls
           global
-          config={{ mass: 2, tension: 500 }}
-          snap={{ mass: 4, tension: 1500 }}
+          snap={true}
           rotation={[0.2, 0.4, 0]}
           polar={[-Math.PI / 3, Math.PI / 3]}
           azimuth={[-Math.PI, Math.PI]}
