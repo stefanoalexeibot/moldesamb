@@ -24,8 +24,9 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Inicio", href: "#inicio" },
-    { name: "Clientes", href: "#clientes" },
     { name: "Servicios", href: "#servicios" },
+    { name: "Proceso", href: "#proceso" },
+    { name: "Showcase", href: "#showcase" },
     { name: "Tecnología", href: "#tecnologia" },
     { name: "Contacto", href: "#contacto" },
   ];
@@ -33,10 +34,10 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         isScrolled 
-          ? "bg-white/80 backdrop-blur-md border-b border-gray-200 py-3" 
-          : "bg-transparent py-5"
+          ? "bg-black/40 backdrop-blur-xl border-b border-white/5 py-4" 
+          : "bg-transparent py-6"
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">

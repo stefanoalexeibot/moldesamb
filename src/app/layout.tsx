@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
+import CustomCursor from "@/components/CustomCursor";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,10 +21,12 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={inter.className}>
+        <CustomCursor />
         <Navbar />
         {children}
         <Footer />
       </body>
+
     </html>
   );
 }
