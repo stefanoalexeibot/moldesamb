@@ -17,41 +17,21 @@ interface Project {
   tolerance: string;
 }
 
-// ── MOLDES 2 (9 fotos - proceso detallado / espejo) ──────────────────────────
+// ── MOLDES 2 (Fotos únicas por proceso) ──────────────────────────
 const moldes2Folder = "/images/MOLDES 2";
 const moldes2Files = [
   "WhatsApp Image 2026-04-01 at 10.28.50 AM.jpeg",
   "WhatsApp Image 2026-04-01 at 10.28.51 AM.jpeg",
-  "WhatsApp Image 2026-04-01 at 10.28.51 AM (1).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.28.51 AM (2).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.28.51 AM (3).jpeg",
   "WhatsApp Image 2026-04-01 at 10.28.52 AM.jpeg",
-  "WhatsApp Image 2026-04-01 at 10.28.52 AM (1).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.28.52 AM (2).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.28.52 AM (3).jpeg",
 ];
 
-// ── MOLDES (18 fotos - galería de trabajos) ───────────────────────────────────
+// ── MOLDES (Fotos únicas) ───────────────────────────────────
 const moldesFolder = "/images/MOLDES";
 const moldesFiles = [
   "WhatsApp Image 2026-04-01 at 10.32.17 AM.jpeg",
-  "WhatsApp Image 2026-04-01 at 10.32.17 AM (1).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.32.17 AM (2).jpeg",
   "WhatsApp Image 2026-04-01 at 10.32.18 AM.jpeg",
-  "WhatsApp Image 2026-04-01 at 10.32.18 AM (1).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.32.18 AM (2).jpeg",
   "WhatsApp Image 2026-04-01 at 10.32.19 AM.jpeg",
-  "WhatsApp Image 2026-04-01 at 10.32.19 AM (1).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.32.19 AM (2).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.32.19 AM (3).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.32.20 AM.jpeg",
-  "WhatsApp Image 2026-04-01 at 10.32.20 AM (1).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.32.20 AM (2).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.32.20 AM (3).jpeg",
   "WhatsApp Image 2026-04-01 at 10.32.21 AM.jpeg",
-  "WhatsApp Image 2026-04-01 at 10.32.21 AM (1).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.32.21 AM (2).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.32.21 AM (3).jpeg",
 ];
 
 const materials = ["Acero P20", "H13 Templado", "Inoxidable 420", "Acero D2", "Aluminio 7075", "Acero P20", "H13 Templado", "Inoxidable 420"];
@@ -59,39 +39,22 @@ const tolerances = ["±0.005mm", "±0.002mm", "±0.008mm", "±0.005mm", "±0.01m
 const categories: Array<"milling" | "turning" | "molds" | "edm"> = ["molds", "molds", "edm", "milling", "molds", "molds", "edm", "molds", "milling", "molds", "molds", "edm", "milling", "molds", "molds", "edm", "milling", "molds"];
 const categories2: Array<"milling" | "turning" | "molds" | "edm"> = ["molds", "edm", "molds", "milling", "molds", "molds", "edm", "milling", "molds"];
 
-// ── MOLDES 3 (16 fotos) ──────────────────────────────────────────────────────
+// ── MOLDES 3 (Fotos únicas) ──────────────────────────────────────────────────────
 const moldes3Folder = "/images/MOLDES 3";
 const moldes3Files = [
   "WhatsApp Image 2026-04-01 at 10.46.25 AM.jpeg",
   "WhatsApp Image 2026-04-01 at 10.46.26 AM.jpeg",
   "WhatsApp Image 2026-04-01 at 10.46.27 AM.jpeg",
-  "WhatsApp Image 2026-04-01 at 10.46.27 AM (1).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.46.27 AM (2).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.46.27 AM (3).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.46.27 AM (4).jpeg",
   "WhatsApp Image 2026-04-01 at 10.46.28 AM.jpeg",
-  "WhatsApp Image 2026-04-01 at 10.46.28 AM (1).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.46.28 AM (2).jpeg",
   "WhatsApp Image 2026-04-01 at 10.46.29 AM.jpeg",
-  "WhatsApp Image 2026-04-01 at 10.46.29 AM (1).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.46.29 AM (2).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.46.29 AM (3).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.46.29 AM (4).jpeg",
   "WhatsApp Image 2026-04-01 at 10.46.30 AM.jpeg",
 ];
 
-// ── MOLDES 4 (10 fotos) ──────────────────────────────────────────────────────
+// ── MOLDES 4 (Fotos únicas) ──────────────────────────────────────────────────────
 const moldes4Folder = "/images/MOLDES 4";
 const moldes4Files = [
   "WhatsApp Image 2026-04-01 at 10.53.49 AM.jpeg",
-  "WhatsApp Image 2026-04-01 at 10.53.49 AM (1).jpeg",
   "WhatsApp Image 2026-04-01 at 10.53.50 AM.jpeg",
-  "WhatsApp Image 2026-04-01 at 10.53.50 AM (1).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.53.50 AM (2).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.53.50 AM (3).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.53.50 AM (4).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.53.50 AM (5).jpeg",
-  "WhatsApp Image 2026-04-01 at 10.53.50 AM (6).jpeg",
   "WhatsApp Image 2026-04-01 at 10.53.51 AM.jpeg",
 ];
 
@@ -126,8 +89,8 @@ const portfolioProjects: Project[] = [
     material: materials[i % materials.length],
     tolerance: tolerances[i % tolerances.length],
   })),
-  // MOLDES 2 folder (9 images - excluding the 2 used for Before/After)
-  ...moldes2Files.slice(2).map((file, i) => ({
+  // MOLDES 2 folder
+  ...moldes2Files.map((file, i) => ({
     id: 30 + i,
     category: categories2[i % categories2.length],
     image: `${moldes2Folder}/${file}`,

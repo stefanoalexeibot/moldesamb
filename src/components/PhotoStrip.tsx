@@ -3,17 +3,30 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const images = [
+const row1Images = [
   "/images/MOLDES/WhatsApp Image 2026-04-01 at 10.32.18 AM.jpeg",
   "/images/MOLDES 3/WhatsApp Image 2026-04-01 at 10.46.27 AM (3).jpeg",
-  "/images/MOLDES/WhatsApp Image 2026-04-01 at 10.32.19 AM.jpeg",
-  "/images/MOLDES 2/WhatsApp Image 2026-04-01 at 10.28.51 AM (1).jpeg",
-  "/images/MOLDES 3/WhatsApp Image 2026-04-01 at 10.46.28 AM.jpeg",
-  "/images/MOLDES/WhatsApp Image 2026-04-01 at 10.32.17 AM (1).jpeg",
-  "/images/MOLDES 3/WhatsApp Image 2026-04-01 at 10.46.26 AM.jpeg",
   "/images/MOLDES 2/WhatsApp Image 2026-04-01 at 10.28.52 AM (2).jpeg",
-  "/images/MOLDES 3/WhatsApp Image 2026-04-01 at 10.46.29 AM (2).jpeg",
+  "/images/MOLDES 4/WhatsApp Image 2026-04-01 at 10.53.51 AM.jpeg",
+  "/images/MOLDES/WhatsApp Image 2026-04-01 at 10.32.17 AM (1).jpeg",
+  "/images/originales/M0004- AM441584.jpeg",
+  "/images/MOLDES 3/WhatsApp Image 2026-04-01 at 10.46.26 AM.jpeg",
+  "/images/MOLDES 2/WhatsApp Image 2026-04-01 at 10.28.51 AM (1).jpeg",
+  "/images/MOLDES 4/WhatsApp Image 2026-04-01 at 10.53.49 AM.jpeg",
+  "/images/originales/M0004- AM441575.jpeg",
+];
+
+const row2Images = [
+  "/images/MOLDES/WhatsApp Image 2026-04-01 at 10.32.19 AM.jpeg",
+  "/images/MOLDES 3/WhatsApp Image 2026-04-01 at 10.46.28 AM.jpeg",
+  "/images/MOLDES 2/WhatsApp Image 2026-04-01 at 10.28.51 AM (3).jpeg",
+  "/images/MOLDES 4/WhatsApp Image 2026-04-01 at 10.53.50 AM (2).jpeg",
   "/images/MOLDES/WhatsApp Image 2026-04-01 at 10.32.20 AM (1).jpeg",
+  "/images/MOLDES 3/WhatsApp Image 2026-04-01 at 10.46.29 AM (2).jpeg",
+  "/images/originales/M0004- AM441583.jpeg",
+  "/images/MOLDES 3/WhatsApp Image 2026-04-01 at 10.46.27 AM (1).jpeg",
+  "/images/MOLDES 2/WhatsApp Image 2026-04-01 at 10.28.52 AM.jpeg",
+  "/images/MOLDES 4/WhatsApp Image 2026-04-01 at 10.53.50 AM (5).jpeg",
 ];
 
 export default function PhotoStrip() {
@@ -24,7 +37,8 @@ export default function PhotoStrip() {
   const x2 = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
   // Double images for seamless repetition
-  const doubled = [...images, ...images];
+  const r1Doubled = [...row1Images, ...row1Images];
+  const r2Doubled = [...row2Images, ...row2Images];
 
   return (
     <section ref={ref} className="py-16 bg-[#050505] overflow-hidden">
@@ -40,7 +54,7 @@ export default function PhotoStrip() {
 
       {/* Row 1 — scrolls left */}
       <motion.div style={{ x: x1 }} className="flex gap-4 mb-4 will-change-transform">
-        {doubled.map((src, i) => (
+        {r1Doubled.map((src, i) => (
           <div
             key={`r1-${i}`}
             className="flex-shrink-0 w-[260px] h-[180px] rounded-2xl overflow-hidden border border-white/5 bg-[#111]"
@@ -54,9 +68,9 @@ export default function PhotoStrip() {
         ))}
       </motion.div>
 
-      {/* Row 2 — scrolls right (reversed order) */}
+      {/* Row 2 — scrolls right */}
       <motion.div style={{ x: x2 }} className="flex gap-4 will-change-transform">
-        {[...doubled].reverse().map((src, i) => (
+        {r2Doubled.map((src, i) => (
           <div
             key={`r2-${i}`}
             className="flex-shrink-0 w-[260px] h-[180px] rounded-2xl overflow-hidden border border-white/5 bg-[#111]"

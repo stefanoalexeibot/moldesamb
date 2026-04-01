@@ -49,13 +49,13 @@ export default function ClientsCarousel() {
           {[...clients, ...clients, ...clients, ...clients, ...clients].map((client, idx) => (
             <div 
               key={idx} 
-              className="px-6 md:px-10 flex items-center justify-center transition-all duration-700 cursor-pointer"
+              className="px-4 md:px-6 flex items-center justify-center transition-all duration-700 cursor-pointer"
             >
-              <div className="h-20 md:h-28 w-40 md:w-64 bg-white/[0.02] backdrop-blur-md border border-white/[0.05] rounded-2xl flex items-center justify-center p-4 md:p-8 hover:border-white/20 hover:bg-white/[0.08] hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] transition-all duration-500 group/logo">
+              <div className="h-20 md:h-28 w-40 md:w-56 bg-white/[0.02] backdrop-blur-md border border-white/[0.05] rounded-2xl flex items-center justify-center p-3 md:p-5 hover:border-white/20 hover:bg-white/[0.08] hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] transition-all duration-500 group/logo">
                 <img 
                   src={client.logo} 
                   alt={client.name} 
-                  className="max-h-full max-w-full object-contain filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-100 group-hover:scale-110 drop-shadow-md" 
+                  className="max-h-full max-w-full object-contain filter grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-100 group-hover:scale-[1.15]" 
                 />
               </div>
             </div>
