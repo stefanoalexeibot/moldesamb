@@ -6,6 +6,16 @@ import { useLanguage } from "@/components/LanguageContext";
 export default function ClientsCarousel() {
   const { language } = useLanguage();
   const clients = [
+    { name: "Nemak", logo: "/images/originales/CLIENTES/nemak-logo-png_seeklogo-359090.png" },
+    { name: "LEGO", logo: "/images/originales/CLIENTES/LEGO-Logo.png" },
+    { name: "Whirlpool", logo: "/images/originales/CLIENTES/whirlpool logo.png" },
+    { name: "Metalsa", logo: "/images/originales/CLIENTES/metalsa-logo.webp" },
+    { name: "Mattel", logo: "/images/originales/CLIENTES/Mattel-Logo.png" },
+    { name: "Carrier", logo: "/images/originales/CLIENTES/Carrier-Logo.jpg" },
+    { name: "Schneider Electric", logo: "/images/originales/CLIENTES/Schneider_Electric-Logo.wine.png" },
+    { name: "ALPLA", logo: "/images/originales/CLIENTES/alpla-group8383.logowik.com.webp" },
+    { name: "Arca Continental", logo: "/images/originales/CLIENTES/arca contintental logo.png" },
+    { name: "Berry Global", logo: "/images/originales/CLIENTES/berry global logo.png" },
     { name: "Pepsi", logo: "/images/originales/CLIENTES/Pepsi-Logo-2014-present.jpg" },
     { name: "Alen", logo: "/images/originales/CLIENTES/alen prov.png" },
     { name: "Bokados", logo: "/images/originales/CLIENTES/BOKADOS.png" },
@@ -32,20 +42,20 @@ export default function ClientsCarousel() {
         <div className="absolute top-0 right-0 w-32 md:w-48 h-full bg-gradient-to-l from-[#080808] to-transparent z-10 pointer-events-none" />
 
         <motion.div
-          className="flex whitespace-nowrap items-center py-4"
-          animate={{ x: [0, -1000] }}
-          transition={{ ease: "linear", duration: 25, repeat: Infinity }}
+          className="flex whitespace-nowrap items-center py-6"
+          animate={{ x: [0, -2000] }}
+          transition={{ ease: "linear", duration: 50, repeat: Infinity }}
         >
           {[...clients, ...clients, ...clients, ...clients, ...clients].map((client, idx) => (
             <div 
               key={idx} 
-              className="px-8 md:px-16 flex items-center justify-center transition-all duration-700 cursor-pointer"
+              className="px-6 md:px-10 flex items-center justify-center transition-all duration-700 cursor-pointer"
             >
-              <div className="h-12 md:h-16 w-32 md:w-48 bg-white/5 backdrop-blur-sm border border-white/5 rounded-xl flex items-center justify-center p-4 hover:border-[#ED1C24]/30 hover:bg-white/10 transition-all group/logo">
+              <div className="h-20 md:h-28 w-40 md:w-64 bg-white/[0.02] backdrop-blur-md border border-white/[0.05] rounded-2xl flex items-center justify-center p-4 md:p-8 hover:border-white/20 hover:bg-white/[0.08] hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] transition-all duration-500 group/logo">
                 <img 
                   src={client.logo} 
                   alt={client.name} 
-                  className="max-h-full max-w-full object-contain filter brightness-125 group-hover:brightness-150 transition-all" 
+                  className="max-h-full max-w-full object-contain filter grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-100 group-hover:scale-110 drop-shadow-md" 
                 />
               </div>
             </div>
