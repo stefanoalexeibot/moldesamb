@@ -128,7 +128,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 group cursor-default">
               <Settings className="text-[#ED1C24] w-8 h-8 group-hover:rotate-90 transition-transform duration-700" />
               <div>
-                <div className="text-white font-black text-2xl tracking-tighter mix-blend-plus-lighter">{t("hero", "stat_axis")}</div>
+                <div className="text-white font-black text-2xl tracking-tighter mix-blend-plus-lighter">{language === "es" ? "3 EJES" : "3 AXIS"}</div>
                 <div className="text-gray-500 text-[10px] font-bold uppercase tracking-widest transition-colors">{t("hero", "stat_machined")}</div>
               </div>
             </div>

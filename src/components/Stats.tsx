@@ -1,34 +1,38 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useTransform, animate, MotionValue } from "framer-motion";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useLanguage } from "@/components/LanguageContext";
 
 const AnimatedCounter = ({ value, label, suffix = "", delay = 0 }: { value: number, label: string, suffix?: string, delay?: number }) => {
   const count = useMotionValue(0);
-  
-  // Create a separate transform that always returns a string to avoid type conflicts
-  const displayValue = useTransform(count, (latest): string => {
-    if (value % 1 !== 0) {
-      return latest.toFixed(3);
-    }
-    return Math.round(latest).toString();
-  });
-
-  const ref = useRef(null);
+  const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (isInView) {
-      const animation = animate(count, value, { duration: 2, delay, ease: "easeOut" });
+      const animation = animate(count, value, { 
+        duration: 2, 
+        delay, 
+        ease: "easeOut",
+        onUpdate: (latest) => {
+          if (ref.current) {
+            if (value % 1 !== 0) {
+              ref.current.textContent = latest.toFixed(3);
+            } else {
+              ref.current.textContent = Math.round(latest).toString();
+            }
+          }
+        }
+      });
       return animation.stop;
     }
   }, [isInView, value, delay, count]);
 
   return (
-    <div ref={ref} className="flex flex-col items-center justify-center p-8 bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl group hover:border-[#ED1C24]/50 transition-all duration-500">
+    <div className="flex flex-col items-center justify-center p-8 bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl group hover:border-[#ED1C24]/50 transition-all duration-500">
       <div className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-2 group-hover:scale-110 transition-transform duration-500 flex items-baseline">
-        <motion.span>{displayValue}</motion.span>
+        <span ref={ref}>0</span>
         <span className="text-[#ED1C24] text-3xl not-italic ml-1">{suffix}</span>
       </div>
       <div className="text-gray-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-center">{label}</div>

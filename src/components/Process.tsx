@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle, Search, Cpu, Layout, FileText, Settings, Rocket } from "lucide-react";
+import { CheckCircle, Search, Cpu, Layout, Rocket } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
 
 export default function Process() {
@@ -12,25 +12,21 @@ export default function Process() {
       title: t("process", "step1_title"),
       desc: t("process", "step1_desc"),
       icon: <Search className="w-8 h-8" />,
-      color: "#ED1C24"
     },
     {
       title: t("process", "step2_title"),
       desc: t("process", "step2_desc"),
       icon: <Layout className="w-8 h-8" />,
-      color: "#333333"
     },
     {
       title: t("process", "step3_title"),
       desc: t("process", "step3_desc"),
       icon: <Cpu className="w-8 h-8" />,
-      color: "#ED1C24"
     },
     {
       title: t("process", "step4_title"),
       desc: t("process", "step4_desc"),
       icon: <CheckCircle className="w-8 h-8" />,
-      color: "#333333"
     }
   ];
 
@@ -48,7 +44,7 @@ export default function Process() {
         </div>
 
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative overflow-visible">
             {/* Connecting line for desktop */}
             <div className="hidden md:block absolute top-[60px] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
             
@@ -59,18 +55,18 @@ export default function Process() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                className="relative flex flex-col items-center text-center group"
+                className="relative flex flex-col items-center text-center group overflow-visible"
               >
-                <div className="w-[120px] h-[120px] rounded-full bg-[#111111] border border-white/5 flex items-center justify-center mb-8 relative z-10 group-hover:border-[#ED1C24]/50 transition-all duration-500 overflow-hidden shadow-2xl">
+                <div className="w-[120px] h-[120px] rounded-full bg-[#111111] border border-white/5 flex items-center justify-center mb-12 relative z-10 group-hover:border-[#ED1C24]/50 transition-all duration-500 shadow-2xl">
                   {/* Glowing background */}
-                  <div className="absolute inset-0 bg-[#ED1C24] opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-[#ED1C24] opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-full" />
                   
                   <div className="text-white group-hover:text-[#ED1C24] transition-colors duration-500">
                     {step.icon}
                   </div>
                   
-                  {/* Step number */}
-                  <div className="absolute -top-1 -right-1 w-10 h-10 rounded-full bg-black border border-white/10 flex items-center justify-center text-[10px] font-black text-[#ED1C24] shadow-lg">
+                  {/* Step number - Ensure overflow-visible on parent */}
+                  <div className="absolute -top-2 -right-2 w-11 h-11 rounded-full bg-black border-2 border-[#ED1C24] flex items-center justify-center text-xs font-black text-white shadow-[0_0_15px_rgba(237,28,36,0.5)] z-20">
                     0{idx + 1}
                   </div>
                 </div>

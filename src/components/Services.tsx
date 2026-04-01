@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Settings, PenTool, Wrench, Shield, Zap, TrendingUp } from "lucide-react";
+import { MoveRight, Cpu, Layout, Settings } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
 
 export default function Services() {
@@ -11,75 +11,84 @@ export default function Services() {
     {
       title: t("services", "mold_design"),
       desc: t("services", "mold_design_desc"),
-      icon: <PenTool className="w-10 h-10" />,
+      icon: <Layout className="w-10 h-10" />,
+      image: "/images/originales/M0004- AM441575.jpeg",
       features: ["CAD / CAM / CAE", "Simulación de llenado", "Optimización de ciclos"]
     },
     {
       title: t("services", "maintenance"),
       desc: t("services", "maintenance_desc"),
-      icon: <Wrench className="w-10 h-10" />,
+      icon: <Settings className="w-10 h-10" />,
+      image: "/images/originales/M0004- AM441583.jpeg",
       features: ["Ajuste de cavidades", "Limpieza ultrasónica", "Reparación de sistemas"]
     },
     {
       title: t("services", "precision_parts"),
       desc: t("services", "precision_parts_desc"),
-      icon: <Settings className="w-10 h-10" />,
+      icon: <Cpu className="w-10 h-10" />,
+      image: "/images/originales/M0004- AM441584.jpeg",
       features: ["Alta precisión", "Lotes técnicos", "Prototipado rápido"]
     }
   ];
 
   return (
-    <section id="servicios" className="py-24 md:py-32 bg-[#0A0A0A] relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-          <div className="max-w-2xl">
-            <span className="text-[#ED1C24] font-black uppercase tracking-[0.4em] text-xs mb-6 block">
-              {t("services", "tag")}
-            </span>
-            <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter italic">
-              {t("services", "title")} <br />
-              <span className="text-[#ED1C24] not-italic">{t("services", "title_accent")}</span>
-            </h2>
-          </div>
-          <p className="text-gray-500 text-lg font-light max-w-sm border-l border-[#ED1C24]/30 pl-8">
-            Soluciones integrales para la industria automotriz, médica y de consumo masivo.
-          </p>
+    <section id="servicios" className="py-24 md:py-32 bg-[#050505] relative">
+      <div className="container mx-auto px-6">
+        <div className="mb-20">
+          <span className="text-[#ED1C24] font-black uppercase tracking-[0.4em] text-xs mb-6 block">
+            {t("services", "tag")}
+          </span>
+          <h2 className="text-4xl md:text-8xl font-black text-white tracking-tighter italic">
+            {t("services", "title")} <br />
+            <span className="text-white/20 not-italic font-light">{t("services", "title_accent")}</span>
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {services.map((service, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              transition={{ duration: 0.8, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="group relative p-12 bg-[#111111] border border-white/5 hover:border-[#ED1C24]/30 transition-all duration-700 overflow-hidden rounded-[40px]"
+              className="group relative h-[600px] overflow-hidden rounded-[40px] bg-[#0A0A0A] border border-white/5 active:scale-95 transition-transform"
             >
-              {/* Background gradient on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#ED1C24]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              
-              <div className="relative z-10">
-                <div className="text-[#ED1C24] mb-8 group-hover:scale-110 transition-transform duration-500 inline-block p-4 bg-black rounded-2xl">
-                  {service.icon}
-                </div>
-                <h3 className="text-3xl font-black text-white italic tracking-tighter mb-6">{service.title}</h3>
-                <p className="text-gray-500 font-light leading-relaxed mb-10 group-hover:text-gray-300 transition-colors">
-                  {service.desc}
-                </p>
-                
-                <ul className="space-y-4">
-                  {service.features.map((feature, fIdx) => (
-                    <li key={fIdx} className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-white/40 group-hover:text-white/80 transition-colors">
-                      <Shield className="w-4 h-4 text-[#ED1C24]/50" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+              {/* Background Image */}
+              <div className="absolute inset-0 z-0">
+                <img 
+                  src={service.image} 
+                  alt={service.title} 
+                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-1000 ease-out" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent" />
               </div>
 
-              {/* Decorative elements */}
-              <div className="absolute -bottom-10 -right-10 text-8xl font-black text-white/[0.02] group-hover:text-[#ED1C24]/[0.05] transition-colors duration-700 pointer-events-none select-none">
+              <div className="relative z-10 p-12 h-full flex flex-col">
+                <div className="text-[#ED1C24] mb-8 bg-black/40 w-fit p-4 rounded-2xl backdrop-blur-xl border border-white/10 group-hover:scale-110 transition-transform duration-500">
+                  {service.icon}
+                </div>
+                
+                <h3 className="text-3xl font-black text-white italic tracking-tighter mb-4 uppercase">{service.title}</h3>
+                <p className="text-gray-400 font-light mb-8 max-w-xs">{service.desc}</p>
+                
+                <div className="space-y-4 mt-auto">
+                  {service.features.map((feature, fIdx) => (
+                    <div key={fIdx} className="flex items-center gap-3 text-white/60 text-xs font-bold uppercase tracking-widest">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#ED1C24]" />
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-10 flex items-center gap-4 text-white font-black text-xs uppercase tracking-[0.3em] group-hover:gap-6 transition-all duration-500">
+                  <span>{t("hero", "cta_secondary")}</span>
+                  <MoveRight className="w-5 h-5 text-[#ED1C24]" />
+                </div>
+              </div>
+
+              {/* Number decoration */}
+              <div className="absolute top-10 right-10 text-8xl font-black text-white/[0.03] select-none italic">
                 0{idx + 1}
               </div>
             </motion.div>
