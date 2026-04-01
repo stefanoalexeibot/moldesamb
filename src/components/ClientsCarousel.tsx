@@ -46,20 +46,23 @@ export default function ClientsCarousel() {
           animate={{ x: [0, -2000] }}
           transition={{ ease: "linear", duration: 50, repeat: Infinity }}
         >
-          {[...clients, ...clients, ...clients, ...clients, ...clients].map((client, idx) => (
-            <div 
-              key={idx} 
-              className="px-4 md:px-6 flex items-center justify-center transition-all duration-700 cursor-pointer"
-            >
-              <div className="h-20 md:h-28 w-40 md:w-56 bg-white/[0.02] backdrop-blur-md border border-white/[0.05] rounded-2xl flex items-center justify-center p-3 md:p-5 hover:border-white/20 hover:bg-white/[0.08] hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] transition-all duration-500 group/logo">
-                <img 
-                  src={client.logo} 
-                  alt={client.name} 
-                  className="max-h-full max-w-full object-contain filter grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-100 group-hover:scale-[1.15]" 
-                />
+          {[...clients, ...clients, ...clients, ...clients, ...clients].map((client, idx) => {
+            const isWhirlpool = client.name === "Whirlpool";
+            return (
+              <div 
+                key={idx} 
+                className="px-4 md:px-6 flex items-center justify-center transition-all duration-700 cursor-pointer"
+              >
+                <div className={`h-20 md:h-28 w-40 md:w-56 backdrop-blur-md border border-white/[0.05] rounded-2xl flex items-center justify-center p-3 md:p-5 hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] transition-all duration-500 group/logo ${isWhirlpool ? 'bg-white' : 'bg-white/[0.02] hover:bg-white/[0.08]'}`}>
+                  <img 
+                    src={client.logo} 
+                    alt={client.name} 
+                    className={`max-h-full max-w-full object-contain filter transition-all duration-700 scale-100 group-hover:scale-[1.15] ${isWhirlpool ? 'opacity-90 group-hover:opacity-100' : 'grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100'}`} 
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </motion.div>
       </div>
     </section>

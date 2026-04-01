@@ -1,89 +1,105 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { Environment, Float, PresentationControls, ContactShadows } from "@react-three/drei";
+import { Environment, Float, PresentationControls, ContactShadows, Text } from "@react-three/drei";
 import { useRef } from "react";
 import * as THREE from "three";
 
 function MoldModel() {
   const group = useRef<THREE.Group>(null);
   
-  // Custom dark metallic material for the main mold blocks
+  // Material metálico oscuro para el bloque base
   const moldMaterial = new THREE.MeshStandardMaterial({
-    color: "#2C2C2C",
-    metalness: 0.8,
+    color: "#242424",
+    metalness: 0.9,
     roughness: 0.2,
   });
 
-  // Chrome material for guide pins & precision cylinders
+  // Material pulido espejo para las cavidades como en la foto
+  const polishedMaterial = new THREE.MeshStandardMaterial({
+    color: "#ffffff",
+    metalness: 1,
+    roughness: 0.05,
+  });
+
   const chromeMaterial = new THREE.MeshStandardMaterial({
-    color: "#e0e0e0",
+    color: "#d0d0d0",
     metalness: 1,
     roughness: 0.1,
   });
-
-  // Hot red glowing material representing the plastic part/cavity
-  const cavityMaterial = new THREE.MeshStandardMaterial({
-    color: "#ED1C24",
-    metalness: 0.5,
-    roughness: 0.2,
-    emissive: "#ED1C24",
-    emissiveIntensity: 0.8,
-  });
+  
+  // Función para renderizar el core de la botella corrugada
+  const renderRibbedCavity = (xPos: number) => (
+    <group position={[xPos, 0, 0]}>
+      {/* Punta superior cónica */}
+      <mesh material={polishedMaterial} position={[0, 1.2, 0]}>
+        <cylinderGeometry args={[0.15, 0.55, 0.8, 32]} />
+      </mesh>
+      
+      {/* Cuerpo corrugado de la botella */}
+      {Array.from({ length: 8 }).map((_, i) => (
+        <group key={i} position={[0, 0.7 - i * 0.18, 0]}>
+          <mesh material={polishedMaterial}>
+            <cylinderGeometry args={[0.55, 0.55, 0.18, 32]} />
+          </mesh>
+          <mesh material={polishedMaterial}>
+             <torusGeometry args={[0.55, 0.04, 16, 32]} />
+          </mesh>
+        </group>
+      ))}
+      
+      {/* Base inferior cónica */}
+      <mesh material={polishedMaterial} position={[0, -0.65, 0]}>
+        <cylinderGeometry args={[0.55, 0.35, 0.3, 32]} />
+      </mesh>
+      
+      {/* Cuello / Eje en la base */}
+      <mesh material={chromeMaterial} position={[0, -1.0, 0]}>
+        <cylinderGeometry args={[0.25, 0.25, 0.4, 32]} />
+      </mesh>
+      <mesh material={moldMaterial} position={[0, -1.0, 0.25]} rotation={[Math.PI/2, 0, 0]}>
+         <cylinderGeometry args={[0.05, 0.05, 0.5, 16]} />
+      </mesh>
+    </group>
+  );
 
   return (
     <group ref={group}>
-      {/* Mold Base Bottom Plate */}
-      <mesh material={moldMaterial} position={[0, -0.6, 0]}>
-        <boxGeometry args={[4, 0.4, 4]} />
+      {/* Placa base del molde */}
+      <mesh material={moldMaterial} position={[0, 0, -1]}>
+        <boxGeometry args={[4.2, 4.4, 1.5]} />
       </mesh>
       
-      {/* Mold Core Plate */}
-      <mesh material={moldMaterial} position={[0, 0, 0]}>
-        <boxGeometry args={[4, 0.8, 4]} />
+      {/* Renderizar doble cavidad estilo botella */}
+      {renderRibbedCavity(-1.0)}
+      {renderRibbedCavity(1.0)}
+
+      {/* Pernos guía (Guide Pins) */}
+      <mesh material={chromeMaterial} position={[-1.7, 1.8, -0.2]}>
+        <cylinderGeometry args={[0.12, 0.12, 1.8, 32]} />
+      </mesh>
+      <mesh material={chromeMaterial} position={[1.7, 1.8, -0.2]}>
+        <cylinderGeometry args={[0.12, 0.12, 1.8, 32]} />
+      </mesh>
+      <mesh material={chromeMaterial} position={[-1.7, -1.8, -0.2]}>
+        <cylinderGeometry args={[0.12, 0.12, 1.8, 32]} />
+      </mesh>
+      <mesh material={chromeMaterial} position={[1.7, -1.8, -0.2]}>
+        <cylinderGeometry args={[0.12, 0.12, 1.8, 32]} />
       </mesh>
 
-      {/* Guide Pins / Columns */}
-      <mesh material={chromeMaterial} position={[-1.6, 1, -1.6]}>
-        <cylinderGeometry args={[0.15, 0.15, 2.5, 32]} />
-      </mesh>
-      <mesh material={chromeMaterial} position={[1.6, 1, -1.6]}>
-        <cylinderGeometry args={[0.15, 0.15, 2.5, 32]} />
-      </mesh>
-      <mesh material={chromeMaterial} position={[-1.6, 1, 1.6]}>
-        <cylinderGeometry args={[0.15, 0.15, 2.5, 32]} />
-      </mesh>
-      <mesh material={chromeMaterial} position={[1.6, 1, 1.6]}>
-        <cylinderGeometry args={[0.15, 0.15, 2.5, 32]} />
-      </mesh>
-
-      {/* Center Core Detail */}
-      <mesh material={moldMaterial} position={[0, 0.5, 0]}>
-        <cylinderGeometry args={[1.2, 1.5, 0.2, 32]} />
-      </mesh>
-      
-      {/* The Injected Part / Red Highlight */}
-      <mesh material={cavityMaterial} position={[0, 0.7, 0]}>
-        <cylinderGeometry args={[0.8, 0.8, 0.3, 32]} />
-      </mesh>
-      
-      <mesh material={cavityMaterial} position={[0, 0.9, 0]}>
-        <sphereGeometry args={[0.4, 32, 32]} />
-      </mesh>
-
-      {/* Waterlines / Coolant ports on the side */}
-      <mesh material={chromeMaterial} position={[-2.05, 0, 1]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} />
-      </mesh>
-      <mesh material={chromeMaterial} position={[-2.05, 0, -1]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} />
-      </mesh>
-      <mesh material={chromeMaterial} position={[2.05, 0, 1]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} />
-      </mesh>
-      <mesh material={chromeMaterial} position={[2.05, 0, -1]} rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.1, 0.1, 0.1, 16]} />
-      </mesh>
+      {/* Texto Engrabado 3D */}
+      <Text
+        position={[0, -1.7, -0.24]}
+        fontSize={0.22}
+        color="#ED1C24"
+        font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZJhjp-Ek-_EeA.woff"
+        anchorX="center"
+        anchorY="middle"
+        characters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789! "
+      >
+        AMB MOLD PRECISION
+      </Text>
     </group>
   );
 }

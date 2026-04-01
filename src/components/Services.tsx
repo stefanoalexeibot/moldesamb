@@ -26,7 +26,7 @@ export default function Services() {
       title: t("services", "mold_repair"),
       desc: t("services", "mold_repair_desc"),
       icon: <Wrench className="w-10 h-10" />,
-      image: "/images/MOLDES/WhatsApp Image 2026-04-01 at 10.32.21 AM.jpeg",
+      image: "/images/MOLDES/WhatsApp Image 2026-04-01 at 10.32.20 AM.jpeg",
       features: ["Soldadura láser", "Reconstrucción", "Pulido espejo"]
     },
     {
