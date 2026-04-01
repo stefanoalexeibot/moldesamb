@@ -122,7 +122,7 @@ export default function FloatingPart() {
       </div>
 
       {/* R3F Canvas */}
-      <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 5, 8], fov: 45 }}>
+      <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 1, 9], fov: 40 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow />
         <spotLight position={[-10, 10, -10]} intensity={1} color="#ED1C24" penumbra={1} />
@@ -132,7 +132,7 @@ export default function FloatingPart() {
         <PresentationControls
           global
           snap={true}
-          rotation={[0.2, 0.4, 0]}
+          rotation={[0.0, -0.3, 0]}
           polar={[-Math.PI / 3, Math.PI / 3]}
           azimuth={[-Math.PI, Math.PI]}
         >
